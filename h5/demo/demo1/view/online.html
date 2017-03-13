@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script>
+    window.onload = function () {
+        document.addEventListener("offline", onOffline, false);
+        document.addEventListener("online", onOnline, false);
+        function onOffline(e) {
+            // Handle the offline event
+
+            alert("网络连接未连接");
+        }
+
+        function onOnline() {
+            // Handle the offline event
+            alert("网络连接已连接");
+        }
+    }
+
+</script>
+</body>
+</html>

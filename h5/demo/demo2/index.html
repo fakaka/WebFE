@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>抽屉式电影简介</title>
+    <style>
+        #main {
+            margin: 30px auto;
+            width: 100%;
+            height: 187px;
+        }
+
+        ul {
+            width: 100%;
+            height: 100%;
+            list-style: none;
+        }
+
+        li {
+            width: 300px;
+            height: 187px;
+            float: left;
+            padding: 4px;
+            box-shadow: 0 0 20px #000;
+            border-radius: 5px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        #main ul li .content {
+            position: absolute;
+            left: 312px;
+            top: 4px;
+            width: 180px;
+            height: 167px;
+            padding: 10px;
+            background: #3e4452;
+        }
+
+        p, h3 {
+            color: white;
+        }
+
+        p {
+            text-indent: 2em;
+        }
+    </style>
+</head>
+<body>
+
+<div id="main">
+    <ul>
+        <li><img src="images/1.jpg" alt="">
+            <div class="content">
+                <h3>电影介绍1</h3>
+                <p>嗯是挺好看的关键会动然后删掉那一条我就不发出来啦～(不然又要忍不住吐槽蜜汁角度了)</p>
+            </div>
+        </li>
+        <li><img src="images/2.jpg" alt="">
+            <div class="content">
+                <h3>电影介绍2</h3>
+                <p>嗯是挺好看的关键会动然后删掉那一条我就不发出来啦～(不然又要忍不住吐槽蜜汁角度了)</p>
+            </div>
+        </li>
+        <li><img src="images/3.jpg" alt="">
+            <div class="content">
+                <h3>电影介绍3</h3>
+                <p>嗯是挺好看的关键会动然后删掉那一条我就不发出来啦～(不然又要忍不住吐槽蜜汁角度了)</p>
+            </div>
+        </li>
+        <li><img src="images/4.jpg" alt="">
+            <div class="content">
+                <h3>电影介绍4</h3>
+                <p>嗯是挺好看的关键会动然后删掉那一条我就不发出来啦～(不然又要忍不住吐槽蜜汁角度了)</p>
+            </div>
+        </li>
+    </ul>
+</div>
+<script src="js/jquery-2.1.1.js"></script>
+<script>
+    $("#main ul li").hover(function () {
+        $(this).animate({width: "500px"}, 500).siblings().animate({width: "210px"}, 500);
+        $(this).siblings().find("img").animate({width: "210px",height:"187px"}, 500);
+    },function () {
+        $("#main ul li").animate({width: "300px"}, 500);
+        $("#main ul li").find("img").animate({width: "300px"}, 500);
+    });
+</script>
+</body>
+</html>

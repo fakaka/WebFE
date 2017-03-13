@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<button id="get">click</button>
+<div>
+    6666666666666666666666655555555555555555555555
+    <br>
+    1111
+</div>
+
+</body>
+<script>
+    document.getElementById("get").addEventListener("click", function () {
+        var selection = document.getSelection()
+        if(selection.rangeCount>0){
+            var r=selection.getRangeAt(0);
+            console.log(r)
+            var s = r.endContainer.data.substring(r.startOffset,r.endOffset);
+            console.log(s)
+        }
+    })
+</script>
+</html>

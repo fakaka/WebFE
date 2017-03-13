@@ -1,0 +1,41 @@
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <title>购物车</title>
+    <style>
+        
+    </style>
+</head>
+
+<body>
+
+    <div id="app">
+        <h4>{{title}}</h4>
+        <p>{{message}}</p>
+        <button @click="click_me">点我</button>
+        <table border="1">
+            <tr>
+                <th>商品编号</th>
+                <th>商品名称</th>
+                <th>商品价格</th>
+            </tr>
+            <tr v-for="item in list">
+                <td>{{item.id}}</td>
+                <td>{{item.name}}</td>
+                <td>{{item.price}}</td>
+            </tr>
+        </table>
+        <h4>{{100}}</h4>
+    </div>
+
+
+
+    <!--<script src="js/jquery-2.1.1.js"></script>-->
+    <script src="js/vue.js"></script>
+    <script src="js/vue-resource.min.js"></script>
+    <script src="js/cart.js"></script>
+    <script></script>
+</body>
+
+</html>

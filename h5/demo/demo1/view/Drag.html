@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style type="text/css">
+        body {
+            padding: 0;
+        }
+
+        div {
+            width: 350px;
+            height: 70px;
+            padding: 10px;
+            border: 1px solid #aaaaaa;
+        }
+
+        #drag1 {
+            position: absolute;
+        }
+
+
+    </style>
+</head>
+<body ondrop="drop(event)" ondragover="allowDrop(event)">
+
+
+<script>
+    function allowDrop(ev) {
+        ev.preventDefault();
+    }
+
+    function drag(ev) {
+        ev.dataTransfer.setData("id", ev.target.id);
+    }
+
+    function drop(ev) {
+        ev.preventDefault();
+        console.log(ev.dataTransfer);
+        var data = ev.dataTransfer.getData("id");
+        var d = document.getElementById(data);
+        d.style.top = (ev.y - 24) + "px";
+        d.style.left = ev.x - 24 + "px";
+    }
+</script>
+</head>
+
+<p>拖动 W3CSchool.cc 图片到矩形框中:</p>
+
+<div id="div1" ondrop="drop(event)" ondragover="allowDrop(event)"></div>
+<br>
+<img id="drag1" src="img/img_submit.gif" draggable="true" ondragstart="drag(event)" width="48" height="48">
+<br>
+<div id="div2" ondrop="drop(event)" ondragover="allowDrop(event)"></div>
+</body>
+</html>

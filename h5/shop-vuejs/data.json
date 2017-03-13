@@ -1,0 +1,17 @@
+{
+    "result": {
+        "total": 100,
+        "list": [
+            {
+                "id": 1,
+                "name": "wahaha",
+                "price": 1
+            },
+            {
+                "id": 2,
+                "name": "wahaha99元",
+                "price": 99
+            }
+        ]
+    }
+}

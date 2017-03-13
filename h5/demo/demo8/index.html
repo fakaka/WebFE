@@ -1,0 +1,102 @@
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <!--<meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">-->
+    <title>title</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+        body{
+            background: url("img/bg.jpg") center;
+        }
+        #banner {
+            width: 730px;
+            height: 390px;
+            margin: 100px auto 0;
+            background: url("img/1.png") no-repeat;
+            border-radius: 8px;
+            animation:star 3s infinite;
+            -webkit-animation: star 3s infinite;
+        }
+
+        @keyframes star{
+            0%{
+                box-shadow: 0 0 8px #fff;
+            }                      
+            50%{
+                box-shadow: 0 0 15px #fff;
+            }            
+            100%{
+                box-shadow: 0 0 6px #fff;
+            }
+        }
+
+        #btn {
+            width: 55px;
+            height: 280px;
+            position: fixed;
+            top:160px;
+            right: 10%;
+        }
+        #btn ul li {
+            list-style: none;
+            width: 55px;
+            height: 55px;
+            margin: 10px 0;
+            background: url("img/icon.jpg");
+            cursor: pointer;
+            /*transition: background-position 0.3s;*/
+        }
+        #btn ul li:nth-child(1) {
+            background-position-x: 56px;
+        }  
+        #btn ul li:nth-child(2) {
+            background-position-y: 55px;
+        }        
+        #btn ul li:nth-child(3) {
+            background-position-y: 126px;
+        }        
+        #btn ul li:nth-child(4) {
+            background-position-y: -70px;
+        }
+        /*#btn ul li:hover {
+            background-position-x: 56px;
+        }*/
+    </style>
+</head>
+
+<body>
+
+    <div id="banner">
+    </div>
+    <div id="btn">
+        <ul>
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+        </ul>
+    </div>
+    <script src="js/jquery-2.1.1.js"></script>
+    <script>
+        var index = 0;
+        setInterval(function(){
+            index = (++index) % 4;
+            $("#banner").animate({
+                "background-position-y" : -index * 390 + "px" 
+            },500);
+            $("#btn ul li").eq(index).animate({
+                "background-position-x" : "56px" 
+            },500).siblings().css("background-position-x","0");
+
+        },2500);
+        $("#btn ul li").click(function(){
+            console.log(this);
+        });
+    </script>
+</body>
+
+</html>

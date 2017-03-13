@@ -1,0 +1,145 @@
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            background: url("img/bg.jpg");
+        }
+
+        .picList {
+            width: 750px;
+            height: 560px;
+            margin: 35px auto;
+        }
+
+        .picList ul li {
+            height: 168px;
+            list-style: none;
+            float: left;
+            margin: 6px;
+            background-color: #fff;
+            border-radius: 5px;
+            box-shadow: 0 0 10px #fff;
+            cursor: pointer;
+        }
+
+        .picList ul li img {
+            width: 230px;
+            height: 160px;
+            padding: 4px;
+        }
+
+        .pan {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.5);
+        }
+
+        .pan .showImage {
+            position: absolute;
+            top: 0;
+            right: 0;
+            bottom: 0;
+            left: 0;
+            margin: auto;
+            width: 668px;
+            height: 468px;
+            background-color: #fff;
+            border-radius: 5px;
+            box-shadow: 0 0 10px #fff;
+            overflow: hidden;
+        }
+
+        .pan .showImage img {
+            width: 660px;
+            height: 460px;
+            padding: 4px;
+        }
+
+        .pan a {
+            display: block;
+            position: absolute;
+            top: 40%;
+            width: 50px;
+            height: 80px;
+            line-height: 80px;
+            text-align: center;
+            border-radius: 5px;
+            box-shadow: 0 0 10px #fff;
+            z-index: auto;
+            text-decoration: none;
+            color: #fff;
+            font-size: 30px;
+            font-weight: bold;
+        }
+
+        .pan a.prev {
+            left: 10%;
+        }
+
+        .pan a.next {
+            right: 10%;
+        }
+
+        .pan .showImage {
+
+        }
+    </style>
+</head>
+<body>
+
+<div class="picList">
+    <ul>
+        <li>
+            <img src="img/main/1.jpg" alt="范冰冰">
+        </li>
+        <li><img src="img/main/2.jpg" alt=""></li>
+        <li><img src="img/main/3.jpg" alt=""></li>
+        <li><img src="img/main/4.jpg" alt=""></li>
+        <li><img src="img/main/5.jpg" alt=""></li>
+        <li><img src="img/main/6.jpg" alt=""></li>
+        <li><img src="img/main/7.jpg" alt=""></li>
+        <li><img src="img/main/8.jpg" alt=""></li>
+        <li><img src="img/main/9.jpg" alt=""></li>
+    </ul>
+</div>
+
+<div class="pan">
+    <div class="show">
+        <div class="showImage" id="images">
+            <span><img src="img/show/0/1.jpg" alt=""></span>
+            <span><img src="img/show/0/2.jpg" alt=""></span>
+            <span><img src="img/show/0/3.jpg" alt=""></span>
+            <span><img src="img/show/0/4.jpg" alt=""></span>
+            <span><img src="img/show/0/5.jpg" alt=""></span>
+        </div>
+        <a class="prev" id="a_prev">&lt;</a>
+        <a class="next" id="a_next">&gt;</a>
+    </div>
+
+</div>
+
+<script src="js/jquery-2.1.1.js"></script>
+<script>
+    $("#a_prev").bind("click", function () {
+        $("#images").animate({left: "40%"}, 500);
+    });
+    $("#a_next").click(function () {
+        $("#images span:last").animate({width: "668"}, 500, function () {
+            $(this).animate({left: "0px"}, 500);
+        });
+        $("#images").animate({left: "40%"}, 500);
+    });
+
+</script>
+</body>
+</html>

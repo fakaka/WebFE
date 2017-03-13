@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>item</title>
+    <link type="text/css" rel="stylesheet" href="css/bootstrap.min.css">
+    <style>
+        .thumbnail {
+            width: 300px;
+            height: 300px;
+        }
+
+        #breadcrumb {
+            margin-top: 100px;
+            margin-bottom: 50px;
+        }
+
+        #price {
+            margin: 30px 0;
+        }
+
+        #buyNum {
+            margin-bottom: 30px;
+        }
+
+    </style>
+</head>
+<body>
+
+<div class="page-header">
+    <h1>超市
+        <small>Subtext for header</small>
+    </h1>
+</div>
+
+<div id="breadcrumb" class="container">
+    <ol class="breadcrumb">
+        <li><a href="#">Home</a></li>
+        <li><a href="#">2013</a></li>
+        <li class="active">十一月</li>
+    </ol>
+</div>
+
+<div class="container">
+    <div class="col-md-3 col-sm-12">
+        <div class="thumbnail">
+            <img src="image/head.png" alt="smile">
+        </div>
+        <div class="">
+            <a></a>
+        </div>
+    </div>
+    <div class="col-md-6 col-md-offset-2 col-sm-12">
+        <h2>李艺彤
+            <small>666</small>
+        </h2>
+        <div id="price">price:¥<span>0.00</span></div>
+        <div id="buyNum">
+            <input type="number" value="1" min="1" id="num1" step="1" pattern="\d+">
+            0
+        </div>
+        <div id="buy">
+            <buton class="btn btn-primary">直接购买</buton>
+            <button class="btn btn-primary" data-toggle="modal" data-target="#addCart">
+                <span class="glyphicon glyphicon-shopping-cart"></span> 加入购物车
+            </button>
+            <!-- 模态框（Modal） -->
+            <div class="modal fade" id="addCart" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
+                 aria-hidden="true">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                            <h4 class="modal-title" id="myModalLabel">李艺彤<small>已成功加入购物车</small></h4>
+                        </div>
+                        <div class="modal-body">数量为: <span>1</span></div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<hr/>
+</body>
+<script type="text/javascript" src="js/jquery.js"></script>
+<script type="text/javascript" src="js/bootstrap.min.js"></script>
+<script>
+    var result = document.createElement("div")
+    result.textContent = "77777777"
+    document.body.appendChild(result)
+
+</script>
+</html>
