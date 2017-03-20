@@ -4,29 +4,29 @@
         <!-- 头部音乐信息 -->
         <div v-bind:style="{backgroundColor: skinColor}"
              class="header">
-            <div v-on:click="isShowAdd=!isShowAdd"
+            <div @click="isShowAdd=!isShowAdd"
                  class="add-icon">
                 <img src="http://omratag7g.bkt.clouddn.com/add.png"
-                     class="icon"
-                     alt="microzz.com">
+                     class="icon">
             </div>
             <div class="music-title">
                 <p>{{ musicTitle }}</p>
             </div>
             <div class="list-icon">
-                <img v-on:click="isShowList=!isShowList"
+                <img @click="isShowList=!isShowList"
                      src="http://omratag7g.bkt.clouddn.com/Category.png"
-                     class="icon"
-                     alt="microzz.com">
+                     class="icon">
             </div>
         </div>
     
         <!-- 音乐内容主体区域 -->
-        <div v-on:click.stop.prevent="isShowList=false"
+        <div @click.stop.prevent="isShowList=false"
              class="content">
     
             <audio v-bind:src="musicSrc"
-                   preload>
+                   id="player"
+                   preload
+                   autoplay>
                 Your browser does not support the audio element.
             </audio>
     
@@ -40,11 +40,11 @@
                         <div class="input-music-name input">
                             <label for="music-name">歌曲名称</label>
                             <input v-model.trim="newMusicName"
-                                   v-on:keyup.enter="addMusic"
+                                   @keyup.enter="addMusic"
                                    id="music-name"
                                    type="text"
                                    placeholder="请输入要显示的歌曲名(必填)">
-                            <img v-on:click.stop.prevent="newMusicName=''"
+                            <img @click.stop.prevent="newMusicName=''"
                                  src="http://omratag7g.bkt.clouddn.com/del2.png"
                                  alt="microzz.com">
                         </div>
@@ -52,11 +52,11 @@
                         <div class="input-music-src input">
                             <label for="music-src">歌曲链接</label>
                             <input v-model.trim="newMusicSrc"
-                                   v-on:keyup.enter="addMusic"
+                                   @keyup.enter="addMusic"
                                    id="music-src"
                                    type="text"
                                    placeholder="请输入歌曲超链接(必填)">
-                            <img v-on:click.stop.prevent="newMusicSrc=''"
+                            <img @click.stop.prevent="newMusicSrc=''"
                                  src="http://omratag7g.bkt.clouddn.com/del2.png"
                                  alt="microzz.com">
                         </div>
@@ -64,18 +64,18 @@
                         <div class="input-music-img-src input">
                             <label for="music-img-src">照片链接</label>
                             <input v-model.trim="newMusicImgSrc"
-                                   v-on:keyup.enter="addMusic"
+                                   @keyup.enter="addMusic"
                                    id="music-img-src"
                                    type="text"
                                    placeholder="请输入歌曲写真照片链接">
-                            <img v-on:click.stop.prevent="newMusicImgSrc=''"
+                            <img @click.stop.prevent="newMusicImgSrc=''"
                                  src="http://omratag7g.bkt.clouddn.com/del2.png"
                                  alt="microzz.com">
                         </div>
     
                         <div class="input-btn input">
-                            <button v-on:click.stop.prevent="addMusic">添加音乐</button>
-                            <button v-on:click.stop.prevent="isShowAdd=false">取消操作</button>
+                            <button @click.stop.prevent="addMusic">添加音乐</button>
+                            <button @click.stop.prevent="isShowAdd=false">取消操作</button>
                         </div>
     
                     </div>
@@ -87,13 +87,12 @@
                 <div class="music-list"
                      v-show="isShowList">
                     <ul>
-                        <li v-on:click.stop.prevent="toggleMusic(item, index)"
+                        <li @click.stop.prevent="toggleMusic(item, index)"
                             v-bind:class="{ activeColor: item.src === (DOM.audio && DOM.audio.src) }"
                             v-for="(item, index) in musics">
                             {{ item.name }}
-                            <img v-on:click.stop.prevent="delMusic(index)"
-                                 src="http://omratag7g.bkt.clouddn.com/%E5%88%A0%E9%99%A4.png"
-                                 alt="microzz.com">
+                            <img @click.stop.prevent="delMusic(index)"
+                                 src="http://omratag7g.bkt.clouddn.com/%E5%88%A0%E9%99%A4.png">
                         </li>
                     </ul>
                 </div>
@@ -128,50 +127,52 @@
             <!-- 换肤 -->
             <transition name="fade">
                 <div v-show="isShowColor"
-                     v-on:click.capture="isShowColor=false"
+                     @click.capture="isShowColor=false"
                      class="select-skin">
-                    <div v-on:click.stop.prevent="skinColor='#B72712'"
+                    <div @click.stop.prevent="skinColor='#B72712'"
                          v-bind:class="{borderStyle: ('#B72712'==skinColor)}"
                          class="one"></div>
-                    <div v-on:click.stop.prevent="skinColor='#1565C0'"
+                    <div @click.stop.prevent="skinColor='#1565C0'"
                          v-bind:class="{borderStyle: ('#1565C0'==skinColor)}"
                          class="two"></div>
-                    <div v-on:click.stop.prevent="skinColor='#212121'"
+                    <div @click.stop.prevent="skinColor='#212121'"
                          v-bind:class="{borderStyle: ('#212121'==skinColor)}"
                          class="three"></div>
-                    <div v-on:click.stop.prevent="skinColor='#1B5E20'"
+                    <div @click.stop.prevent="skinColor='#1B5E20'"
                          v-bind:class="{borderStyle: ('#1B5E20'==skinColor)}"
                          class="four"></div>
                 </div>
             </transition>
     
-            <img v-on:click.stop.prevent="isShowColor = !isShowColor"
+            <img @click.stop.prevent="isShowColor = !isShowColor"
                  class="skin"
                  v-bind:src="skinSrc"
                  alt="microzz.com">
     
         </div>
     
+        <span id="progress"
+              style="width:0%;height:0%;border-top:2px solid #000"></span>
         <!-- 底部控制栏  -->
         <div v-bind:style="{backgroundColor: skinColor}"
              class="footer">
     
             <div class="prev">
-                <img v-on:click.stop.prevent="toPrev"
+                <img @click.stop.prevent="toPrev"
                      src="http://omratag7g.bkt.clouddn.com/music_rewind_button.png"
                      class="icon"
                      alt="microzz.com">
             </div>
     
             <div class="start-pause">
-                <img v-on:click.stop.prevent="startPause"
+                <img @click.stop.prevent="startPause"
                      v-bind:src="playBtnSrc"
                      class="icon"
                      alt="microzz.com">
             </div>
     
             <div class="next">
-                <img v-on:click.stop.prevent="toNext"
+                <img @click.stop.prevent="toNext"
                      src="http://omratag7g.bkt.clouddn.com/music_fastforward_button.png"
                      class="icon"
                      alt="microzz.com">
@@ -195,19 +196,21 @@ export default {
     mounted() {
         this.DOM = {
             audio: document.querySelector('audio'),
-            rotateImg: document.querySelector('.rotateImg')
+            rotateImg: document.querySelector('.rotateImg'),
+            progress: document.querySelector('#progress')
         };
         this.musicSrc = this.musics[this.index].src;
         this.musicTitle = this.musics[this.index].name;
         this.musicImgSrc = this.musics[this.index].musicImgSrc || this.musicSrcDefault;
         this.DOM.audio.addEventListener('ended', () => { this.toChange('next').then(this.toAnimate); });
         Store.fetch('musics').length === 0 ? Store.save(this.musics) : null;
+        this.update();
 
     },
     data() {
         return {
             musicTitle: '',
-            playBtnSrc: 'http://omratag7g.bkt.clouddn.com/music_play_button.png',
+            playBtnSrc: 'http://omratag7g.bkt.clouddn.com/music_pause_button.png',
             DOM: {},
             musicImgSrc: '',
             musics: Store.fetch('musics').length ? Store.fetch('musics') : Object.assign([], MusicData),
@@ -247,6 +250,21 @@ export default {
         }
     },
     methods: {
+
+        //
+        update() {
+            var audio = this.DOM.audio;
+            audio.onloadeddata = function () {
+                // console.log(audio.duration / 60 + ":" + audio.duration % 60);
+                // console.log(this.DOM.progress.width)
+            }
+
+            audio.ontimeupdate = function () {
+                let per = audio.currentTime / audio.duration;
+                // console.log(per + "%");
+                document.getElementById("progress").style.width = per * 100 + "%"
+            };
+        },
         // 显示提示信息
         showMsg(msg) {
             this.msg = msg;
@@ -377,7 +395,6 @@ export default {
             })
         }
     },
-
     components: {}
 }
 </script>
@@ -447,7 +464,6 @@ export default {
     flex: 1;
     text-align: left;
     padding-left: 10px;
-    padding-top: 5px;
     cursor: pointer;
 }
 
@@ -462,7 +478,6 @@ export default {
     flex: 1;
     text-align: right;
     padding-right: 10px;
-    padding-top: 5px;
 }
 
 .header .list-icon img {
@@ -639,7 +654,7 @@ ul li {
 .content .img img {
     width: 240px;
     height: 240px;
-    border-radius: 120px;
+    border-radius: 50%;
     margin: auto;
     z-index: 1;
 }
@@ -703,7 +718,7 @@ ul li {
 
 .footer {
     flex: 1.8;
-    border-top: 1px white solid;
+    /*border-top: 1px white solid;*/
     display: flex;
     background-color: #212121;
 }
