@@ -46,7 +46,7 @@
                                    placeholder="请输入要显示的歌曲名(必填)">
                             <img @click.stop.prevent="newMusicName=''"
                                  src="http://omratag7g.bkt.clouddn.com/del2.png"
-                                 alt="microzz.com">
+                                 alt="">
                         </div>
     
                         <div class="input-music-src input">
@@ -58,7 +58,7 @@
                                    placeholder="请输入歌曲超链接(必填)">
                             <img @click.stop.prevent="newMusicSrc=''"
                                  src="http://omratag7g.bkt.clouddn.com/del2.png"
-                                 alt="microzz.com">
+                                 alt="">
                         </div>
     
                         <div class="input-music-img-src input">
@@ -70,7 +70,7 @@
                                    placeholder="请输入歌曲写真照片链接">
                             <img @click.stop.prevent="newMusicImgSrc=''"
                                  src="http://omratag7g.bkt.clouddn.com/del2.png"
-                                 alt="microzz.com">
+                                 alt="">
                         </div>
     
                         <div class="input-btn input">
@@ -82,7 +82,7 @@
                 </div>
             </transition>
     
-            <!-- 音乐列表，同是设置显示、隐藏的过渡效果 -->
+            <!-- 音乐列表 -->
             <transition name="fade">
                 <div class="music-list"
                      v-show="isShowList">
@@ -103,14 +103,14 @@
                 <div class="msg"
                      v-if="isShowMsg">
                     <img src="http://omratag7g.bkt.clouddn.com/%E6%8F%90%E7%A4%BA.png"
-                         alt="microzz.com">
+                         alt="">
                     <p>{{ msg }}</p>
                 </div>
             </transition>
     
             <div class="bg-img">
                 <img v-bind:src="musicImgSrc"
-                     alt="microzz.com">
+                     alt="">
             </div>
     
             <div class="content-header"></div>
@@ -119,7 +119,7 @@
                 <img v-bind:class="{imgAnimate: isImgAnimate}"
                      class="rotateImg"
                      v-bind:src="musicImgSrc"
-                     alt="microzz.com">
+                     alt="">
             </div>
     
             <div class="content-footer"></div>
@@ -141,18 +141,23 @@
                     <div @click.stop.prevent="skinColor='#1B5E20'"
                          v-bind:class="{borderStyle: ('#1B5E20'==skinColor)}"
                          class="four"></div>
+                    <div @click.stop.prevent="skinColor='#228fbd'"
+                         v-bind:class="{borderStyle: ('#228fbd'==skinColor)}"
+                         class="five"></div>
                 </div>
             </transition>
     
             <img @click.stop.prevent="isShowColor = !isShowColor"
                  class="skin"
                  v-bind:src="skinSrc"
-                 alt="microzz.com">
+                 alt="">
     
         </div>
     
+        <!-- 进度条 -->
         <span id="progress"
-              style="width:0%;height:0%;border-top:2px solid #000"></span>
+              style="width:0%;height:0%;border-top:2px solid #000;">
+                  </span>
         <!-- 底部控制栏  -->
         <div v-bind:style="{backgroundColor: skinColor}"
              class="footer">
@@ -161,21 +166,21 @@
                 <img @click.stop.prevent="toPrev"
                      src="http://omratag7g.bkt.clouddn.com/music_rewind_button.png"
                      class="icon"
-                     alt="microzz.com">
+                     alt="">
             </div>
     
             <div class="start-pause">
                 <img @click.stop.prevent="startPause"
                      v-bind:src="playBtnSrc"
                      class="icon"
-                     alt="microzz.com">
+                     alt="">
             </div>
     
             <div class="next">
                 <img @click.stop.prevent="toNext"
                      src="http://omratag7g.bkt.clouddn.com/music_fastforward_button.png"
                      class="icon"
-                     alt="microzz.com">
+                     alt="">
             </div>
     
         </div>
@@ -216,7 +221,7 @@ export default {
             musics: Store.fetch('musics').length ? Store.fetch('musics') : Object.assign([], MusicData),
             index: 0,
             musicSrc: '',
-            isImgAnimate: false,
+            isImgAnimate: true,
             isShowList: false,
             isShowMsg: false,
             isShowColor: false,
@@ -451,6 +456,7 @@ export default {
     background-color: #212121;
     display: flex;
     align-items: center;
+    box-shadow: 0 2px 4px #000;
 }
 
 .header img {
@@ -607,8 +613,8 @@ ul {
     list-style: decimal;
     background: rgba(0, 0, 0, .7);
     margin: 0;
-    box-shadow: 0 0 6px #2196F3;
-    border-radius: 10px 0 0 10px;
+    box-shadow: 0 0 5px #2196F3;
+    border-radius: 0 0 0 10px;
 }
 
 ul li {
@@ -683,12 +689,6 @@ ul li {
     cursor: pointer;
 }
 
-.content .select-skin div.four {
-    bottom: 95px;
-    background-color: #1B5E20;
-    flex: 1;
-}
-
 .content .select-skin div.one {
     bottom: 65px;
     background-color: #B72712;
@@ -704,6 +704,18 @@ ul li {
 .content .select-skin div.three {
     bottom: 5px;
     background-color: #212121;
+    flex: 1;
+}
+
+.content .select-skin div.four {
+    bottom: 95px;
+    background-color: #1B5E20;
+    flex: 1;
+}
+
+.content .select-skin div.five {
+    bottom: 95px;
+    background-color: #228fbd;
     flex: 1;
 }
 

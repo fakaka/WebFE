@@ -1,27 +1,27 @@
 let musicData = [
   {
     name: '以冬 - 我的一个道姑朋友',
-    src:'http://m2.music.126.net/7WiRhPdirEJ2axW9Xm6uJQ==/1415071481819545.mp3',
+    src: 'http://m2.music.126.net/7WiRhPdirEJ2axW9Xm6uJQ==/1415071481819545.mp3',
     musicImgSrc: 'http://omratag7g.bkt.clouddn.com/%E6%B0%91%E8%B0%A3.jpg'
   },
   {
     name: '任素汐 - 我要你',
-    src:'http://m2.music.126.net/WhBIiLKYNa84TF3p5xx2FQ==/3265549607332004.mp3',
+    src: 'http://m2.music.126.net/WhBIiLKYNa84TF3p5xx2FQ==/3265549607332004.mp3',
     musicImgSrc: 'http://omratag7g.bkt.clouddn.com/%E6%88%91%E8%A6%81%E4%BD%A0.jpg'
   },
   {
     name: '赵雷 - 成都',
-    src:'http://m2.music.126.net/7o5D4dA6271VktgawcbZFA==/18665309393829604.mp3',
+    src: 'http://m2.music.126.net/7o5D4dA6271VktgawcbZFA==/18665309393829604.mp3',
     musicImgSrc: 'http://omratag7g.bkt.clouddn.com/%E8%B5%B5%E9%9B%B7.jpg'
   },
   {
     name: '韩安旭 - 多幸运',
-    src:'http://m2.music.126.net/N_2fJbqpi8QDnV1YJPCsuw==/3424978721721344.mp3',
+    src: 'http://m2.music.126.net/N_2fJbqpi8QDnV1YJPCsuw==/3424978721721344.mp3',
     musicImgSrc: 'http://omratag7g.bkt.clouddn.com/%E9%9F%A9%E5%AE%89%E6%97%AD.jpg'
   },
   {
     name: '赵雷 - 理想',
-    src:'http://m2.music.126.net/gQDmHxjY_gAtRE-RKqDQJw==/1413971968361530.mp3',
+    src: 'http://m2.music.126.net/gQDmHxjY_gAtRE-RKqDQJw==/1413971968361530.mp3',
     musicImgSrc: 'http://omratag7g.bkt.clouddn.com/%E8%B5%B5%E9%9B%B7.jpg'
   },
   {

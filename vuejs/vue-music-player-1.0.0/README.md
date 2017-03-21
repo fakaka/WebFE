@@ -11,3 +11,9 @@ GitHub地址: 🔗https://github.com/microzz/vue-music-player
 
 
 ## 更新记录
+
+## TODO 
+1. 把换颜色用vue改写  
+vue的v-for  
+2. 把图片下载到本地
+
