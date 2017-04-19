@@ -359,7 +359,6 @@ export default {
                 this.DOM.rotateImg.style.animationPlayState = 'running';
             }, 0);
         },
-
         // 切换
         toChange(changeFlag) {
             // Promise 异步
