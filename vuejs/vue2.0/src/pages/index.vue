@@ -8,12 +8,10 @@
                     <ul>
                         <li v-for="item in product.list">
                             <a :href="item.url">{{item.name}}</a>
-                            <span v-if="item.hot"
-                                  class="hot-tag">HOT</span>
+                            <span v-if="item.hot" class="hot-tag">HOT</span>
                         </li>
                     </ul>
-                    <div v-if="!product.isLast"
-                         class="hr"></div>
+                    <div v-if="!product.isLast" class="hr"></div>
                 </template>
             </div>
             <div class="index-left-block lastest-news">
@@ -26,10 +24,9 @@
             </div>
         </div>
         <div class="index-right">
+            <slide-show :slides="slides" :inv="invTime"></slide-show>
             <div class="index-board-list">
-                <div class="index-board-item"
-                     v-for="(item, index) in boardList"
-                     :class="[{'line-last' : index % 2 == 1},'index-board-' + item.id]">
+                <div class="index-board-item" v-for="(item, index) in boardList" :class="[{'line-last' : index % 2 == 1},'index-board-' + item.id]">
                     <div class="index-board-item-inner">
                         <h2>{{ item.title }}</h2>
                         <p>{{ item.description }}</p>
@@ -43,16 +40,23 @@
     </div>
 </template>
 <script>
+import slideShow from '../components/slideShow'
+
 export default {
     name: 'index',
+    components: {
+        slideShow
+    },
     created() {
-        this.$http.get('http://www.baidu.com', function (data) {
-            console.log(data)
-        })
+        // this.$http.get('http://www.baidu.com', function (data) {
+        //     console.log(data)
+        // })
+        // console.log('created')
     },
     data() {
         return {
             msg: 'Welcome to Your Vue.js App',
+            invTime: 2000,
             slides: [
                 {
                     src: require('../assets/slideShow/pic1.jpg'),

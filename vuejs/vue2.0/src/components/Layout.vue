@@ -8,17 +8,12 @@
                 <div class="head-nav">
                     <ul class="nav-list">
                         <li> {{ username }}</li>
-                        <li v-if="username!== ''"
-                            class="nav-pile">|</li>
-                        <li v-if="username!== ''"
-                            @click="quit">退出</li>
-                        <li v-if="username=== ''"
-                            @click="logClick">登录</li>
+                        <li v-if="username!== ''" class="nav-pile">|</li>
+                        <li v-if="username!== ''" @click="quit">退出</li>
+                        <li v-if="username=== ''" @click="logClick">登录</li>
                         <li class="nav-pile">|</li>
-                        <li v-if="username=== ''"
-                            @click="regClick">注册</li>
-                        <li v-if="username=== ''"
-                            class="nav-pile">|</li>
+                        <li v-if="username=== ''" @click="regClick">注册</li>
+                        <li v-if="username=== ''" class="nav-pile">|</li>
                         <li @click="aboutClick">关于</li>
                     </ul>
                 </div>
@@ -41,8 +36,22 @@ export default {
     data() {
         return {
             msg: 'Welcome to Vue2.0 App',
-            username: '卡宝的木偶',
+            username: '卡宝',
             // username: '',
+
+        }
+    },
+    methods: {
+        quit() {
+            console.log('quit')
+        },
+        regClick() {
+
+        },
+        logClick() {
+
+        },
+        aboutClick() {
 
         }
     }
@@ -143,6 +152,9 @@ video {
     font: inherit;
     vertical-align: baseline;
 }
+
+
+
 
 
 
