@@ -27,32 +27,59 @@
         <div class="app-footer">
             <p>© 2017 Hairpin MIT</p>
         </div>
+        <my-dialog :isShow="isShowLogDialog" @onClose="closeDialog('isShowLogDialog')">
+            <log-form @logSuccess="onLogSuccess"></log-form>
+        </my-dialog>
+        <my-dialog :isShow="isShowRegDialog" @onClose="closeDialog('isShowRegDialog')">
+            <reg-form></reg-form>
+        </my-dialog>
+        <my-dialog :isShow="isShowAboutDialog" @onClose="closeDialog('isShowAboutDialog')">
+            <p>关于本站。。。。。。。。</p>
+        </my-dialog>
     </div>
 </template>
 
 <script>
+import Dialog from './base/dialog'
+import LogForm from './logForm'
+import RegForm from './regForm'
+
 export default {
     name: 'layout',
+    components: {
+        MyDialog: Dialog,
+        LogForm,
+        RegForm
+    },
     data() {
         return {
             msg: 'Welcome to Vue2.0 App',
-            username: '卡宝',
-            // username: '',
-
+            username: '',
+            isShowAboutDialog: false,
+            isShowLogDialog: false,
+            isShowRegDialog: false
         }
     },
     methods: {
         quit() {
-            console.log('quit')
+            console.log(this.username + ' quit !')
+            this.username = ''
         },
         regClick() {
-
+            this.isShowRegDialog = true
         },
         logClick() {
-
+            this.isShowLogDialog = true
         },
         aboutClick() {
-
+            this.isShowAboutDialog = true
+        },
+        closeDialog(attr) {
+            this[attr] = false
+        },
+        onLogSuccess(name) {
+            this.isShowLogDialog = false
+            this.username = name
         }
     }
 }
@@ -152,6 +179,11 @@ video {
     font: inherit;
     vertical-align: baseline;
 }
+
+
+
+
+
 
 
 
