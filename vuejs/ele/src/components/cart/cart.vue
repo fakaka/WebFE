@@ -17,7 +17,7 @@
                     另需配送费￥{{ deliveryPrice }}元
                 </div>
             </div>
-            <div class="content-right">
+            <div class="content-right" @click.stop="pay">
                 <div class="pay" :class="payClass">
                     {{ payDesc }}
                 </div>
@@ -99,6 +99,28 @@ export default {
         hideList(){
             this.fold=true
         },
+        empty(){
+            this.selectedFoods.forEach((food)=>{
+                food.count = 0 
+            })
+        },
+        pay(){
+            if(this.totalPrice< this.minPrice){
+                return 
+            }
+            alert('支付')
+        },
+        drop(ele){
+            // for (let i = 0; i < this.balls.length; i++) {
+            //     let ball = this.balls[i]
+            //     if (!ball.show) {
+            //         ball.show = true
+            //         ball.ele = ele
+            //         this.dropBalls.push(ball)
+            //         return
+            //     }
+            // }
+        },
         beforeDrop(el) {
             let count = this.balls.length;
             while (count--) {
@@ -162,18 +184,11 @@ export default {
             }
         },
         payClass() {
-            return 'not-enough'
-        },
-        drop(ele){
-            // for (let i = 0; i < this.balls.length; i++) {
-            //     let ball = this.balls[i]
-            //     if (!ball.show) {
-            //         ball.show = true
-            //         ball.ele = ele
-            //         this.dropBalls.push(ball)
-            //         return
-            //     }
-            // }
+            if (this.totalPrice < this.minPrice) {
+                return 'not-enough'
+            } else {
+                return 'enough'
+            }
         },
         listShow(){
             if(!this.totalCount){

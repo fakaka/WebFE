@@ -12,7 +12,7 @@
                 <li v-for="item in goods" class="food-list" ref="foodList">
                     <h1 class="title">{{item.name }}</h1>
                     <ul>
-                        <li v-for="food in item.foods" class="food-item">
+                        <li v-for="food in item.foods" class="food-item" @click="selectFood(food,$event)">
                             <div class="icon">
                                 <img :src="food.icon" alt="" width="57" height="57">
                             </div>
@@ -36,7 +36,8 @@
                 </li>
             </ul>
         </div>
-        <cart :deliveryPrice="3" :minPrice="20" :selected-foods="selectedFoods" ref="shopCart"></cart>
+        <cart :deliveryPrice="3" :minPrice="20" :selected-foods="selectedFoods" ref="cart"></cart>
+        <food @add="addFood" :food="selectedFood" ref="food"></food>
     </div>
 </template>
 
@@ -44,17 +45,20 @@
 import BScroll from 'better-scroll'
 import Cart from '../cart/cart'
 import CartControl from '../cartcontrol/cartcontrol'
+import Food from '../food/food'
+
 
 export default {
     name: 'goods',
     components: {
-        Cart, CartControl
+        Cart, CartControl, Food
     },
     data() {
         return {
             msg: "this is goods page",
             listHeight: [],
             scrollY: 0,
+            selectedFood:{},
             classMap: ['decrease', 'discount', 'special', 'invoice', 'guarantee'],
             "goods": [
                 {
@@ -102,27 +106,6 @@ export default {
                             "sellCount": 188,
                             "rating": 96,
                             "ratings": [
-                                {
-                                    "username": "3******c",
-                                    "rateTime": 1469281964000,
-                                    "rateType": 0,
-                                    "text": "",
-                                    "avatar": "http://static.galileo.xiaojukeji.com/static/tms/default_header.png"
-                                },
-                                {
-                                    "username": "2******3",
-                                    "rateTime": 1469271264000,
-                                    "rateType": 0,
-                                    "text": "",
-                                    "avatar": "http://static.galileo.xiaojukeji.com/static/tms/default_header.png"
-                                },
-                                {
-                                    "username": "3******b",
-                                    "rateTime": 1469261964000,
-                                    "rateType": 1,
-                                    "text": "",
-                                    "avatar": "http://static.galileo.xiaojukeji.com/static/tms/default_header.png"
-                                }
                             ],
                             "info": "",
                             "icon": "http://fuss10.elemecdn.com/c/6b/29e3d29b0db63d36f7c500bca31d8jpeg.jpeg?imageView2/1/w/114/h/114",
@@ -1147,7 +1130,13 @@ export default {
             this.foodsScroll.scrollToElement(ele, 300);
         },
         addFood(target){
-            this.$refs.shopCart.drop(target);
+            this.$refs.cart.drop(target);
+        },
+        selectFood(food, event){
+            if(!event._constructed)
+                return
+             this.selectedFood = food   
+             this.$refs.food.show()
         }
     },
     created() {
