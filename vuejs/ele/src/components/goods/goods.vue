@@ -20,7 +20,7 @@
                                 <h2 class="name">{{ food.name }}</h2>
                                 <p class="desc">{{ food.description }}</p>
                                 <div class="extra">
-                                    <span class="count">月售{{ food.sellCount }}</span>
+                                    <span class="count">月售{{ food.sellCount }}份</span>
                                     <span>好评率{{food.rating }}%</span>
                                 </div>
                                 <div class="price">
@@ -36,14 +36,19 @@
                 </li>
             </ul>
         </div>
+        <cart :deliveryPrice="3" :minPrice="20"></cart>
     </div>
 </template>
 
 <script>
 import BScroll from 'better-scroll'
+import Cart from '../cart/cart'
 
 export default {
     name: 'goods',
+    components: {
+        Cart
+    },
     data() {
         return {
             msg: "this is goods page",
