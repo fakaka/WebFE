@@ -21,6 +21,36 @@ var autoOpenBrowser = !!config.dev.autoOpenBrowser
 var proxyTable = config.dev.proxyTable
 
 var app = express()
+/**添加api 开始 */
+var appData = require('../data.json')
+var seller = appData.seller
+var goods = appData.goods
+var ratings = appData.ratings
+
+var apiRouter = express.Router()
+
+apiRouter.get('/seller', (req, resp) => {
+  resp.json({
+    errno: 0,
+    data: seller
+  })
+})
+apiRouter.get('/goods', (req, resp) => {
+  resp.json({
+    errno: 0,
+    data: goods
+  })
+})
+apiRouter.get('/ratings', (req, resp) => {
+  resp.json({
+    errno: 0,
+    data: ratings
+  })
+})
+
+app.use('/api', apiRouter)
+/**添加api 结束 */
+
 var compiler = webpack(webpackConfig)
 
 var devMiddleware = require('webpack-dev-middleware')(compiler, {
@@ -29,7 +59,7 @@ var devMiddleware = require('webpack-dev-middleware')(compiler, {
 })
 
 var hotMiddleware = require('webpack-hot-middleware')(compiler, {
-  log: () => {}
+  log: () => { }
 })
 // force page reload when html-webpack-plugin template changes
 compiler.plugin('compilation', function (compilation) {

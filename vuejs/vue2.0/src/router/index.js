@@ -22,23 +22,22 @@ export default new Router({
         name: 'detail',
         component: Detail,
         redirect: '/detail/analysis',
-        children: [
-            {
-                path: 'analysis',
-                component: DetailAnaPage
-            },
-            {
-                path: 'count',
-                component: DetailCouPage
-            },
-            {
-                path: 'forecast',
-                component: DetailForPage
-            },
-            {
-                path: 'publish',
-                component: DetailPubPage
-            }
+        children: [{
+            path: 'analysis',
+            component: DetailAnaPage
+        },
+        {
+            path: 'count',
+            component: DetailCouPage
+        },
+        {
+            path: 'forecast',
+            component: DetailForPage
+        },
+        {
+            path: 'publish',
+            component: DetailPubPage
+        }
         ]
     }, {
         name: 'orderList',
