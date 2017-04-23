@@ -14,7 +14,8 @@ export function saveToLocal(id, key, value) {
 };
 
 export function loadFromLocal(id, key, def) {
-	let seller = window.localStorage.__seller__;
+	// let seller = window.localStorage.__seller__;
+	let seller = window.localStorage.getItem('seller')
 	if (!seller) {
 		return def;
 	}
