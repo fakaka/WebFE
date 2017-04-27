@@ -22,8 +22,8 @@
                 <div class="aplayer-bar-wrap">
                     <div class="aplayer-bar">
                         <div class="aplayer-loaded" style="width: 0"></div>
-                        <div class="aplayer-played" style="width: 0; background: ${this.option.theme};">
-                            <span class="aplayer-thumb" style="border: 1px solid ${this.option.theme};"></span>
+                        <div class="aplayer-played" style="width: 14.1958%; background: rgb(230, 208, 178);">
+                            <span class="aplayer-thumb" style="border: 1px solid rgb(230, 208, 178);" @click="play(50)"></span>
                         </div>
                     </div>
                 </div>
@@ -74,14 +74,16 @@ export default {
         return {
             theme: '#b7daff',
             isPlaying: false,
+            currIndex: 0,
 
             musics: [{
                 title: '借我',
-                author: '谢春花'
-            },
-            {
-                title: '我害怕',
-                author: '薛之谦'
+                author: '谢春花',
+                url: 'http://ooyhwygfv.bkt.clouddn.com/%E8%B0%A2%E6%98%A5%E8%8A%B1%20-%20%E5%80%9F%E6%88%91.mp3'
+            }, {
+                title: '暧昧',
+                author: '薛之谦',
+                url: 'http://ooyhwygfv.bkt.clouddn.com/%E8%96%9B%E4%B9%8B%E8%B0%A6%20-%20%E6%9A%A7%E6%98%A7.mp3'
             }
             ],
             lrc: ['作曲 : 谢知非',
@@ -99,20 +101,36 @@ export default {
     },
     methods: {
         togglePlay() {
-            console.log('loading...')
-            if (!this.audio) {
-                this.audio = new Audio('http://ooyhwygfv.bkt.clouddn.com/%E8%B0%A2%E6%98%A5%E8%8A%B1%20-%20%E5%80%9F%E6%88%91.mp3')
-            }
             if (this.audio.paused) {
                 this.audio.play()
             } else {
                 this.audio.pause()
             }
             this.isPlaying = !this.isPlaying
+        },
+        play(time) {
+            if (time) {
+                this.audio.currentTime = time
+            }
+            if (this.audio.paused)
+                this.audio.play()
+            this.isPlaying = true
+        },
+        playMusic(idx) {
+            this.currIndex = idx
+            this.audio.pause()
+            this.audio = new Audio(this.musics[this.currIndex].url)
+            this.audio.play()
+            this.isPlaying = true
         }
+
     },
     mounted() {
-
+        this.$nextTick(() => {
+            if (!this.audio) {
+                this.audio = new Audio(this.musics[this.currIndex].url)
+            }
+        })
     }
 }
 </script>
