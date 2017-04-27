@@ -1,8 +1,11 @@
 <template>
     <div class="aplayer" id="aplayer">
         <div class="aplayer-pic">
-            <div class="aplayer-button aplayer-play" @click="togglePlay">
+            <div class="aplayer-button aplayer-play" @click="togglePlay" v-show="!isPlaying">
                 <icon :type="'play'"></icon>
+            </div>
+            <div class="aplayer-button aplayer-pause" @click="togglePlay" v-show="isPlaying">
+                <icon :type="'pause'"></icon>
             </div>
         </div>
         <div class="aplayer-info">
@@ -70,6 +73,8 @@ export default {
     data() {
         return {
             theme: '#b7daff',
+            isPlaying: false,
+
             musics: [{
                 title: '借我',
                 author: '谢春花'
@@ -97,10 +102,13 @@ export default {
             console.log('loading...')
             if (!this.audio) {
                 this.audio = new Audio('http://ooyhwygfv.bkt.clouddn.com/%E8%B0%A2%E6%98%A5%E8%8A%B1%20-%20%E5%80%9F%E6%88%91.mp3')
+            }
+            if (this.audio.paused) {
                 this.audio.play()
             } else {
                 this.audio.pause()
             }
+            this.isPlaying = !this.isPlaying
         }
     },
     mounted() {
