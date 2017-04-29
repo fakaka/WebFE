@@ -2,26 +2,26 @@
     <div class="container">
         <!--<icon></icon>-->
         Normal
-        <hello></hello>
+        <!--<m-player></m-player>-->
         <br> withlist
-        <hello :class="'aplayer-withlist'"></hello>
+        <!--<m-player :class="'aplayer-withlist'"></m-player>-->
         <br> withlrc
-        <hello :class="'aplayer-withlrc'"></hello>
+        <!--<m-player :class="'aplayer-withlrc'"></m-player>-->
         <br> withlist and withlrc
-        <hello :class="'aplayer-withlist aplayer-withlrc'"></hello>
+        <m-player :class="'aplayer-withlist aplayer-withlrc'"></m-player>
         <br> narrow
-        <hello :class="'aplayer-narrow'"></hello>
+        <!--<m-player :class="'aplayer-narrow'"></m-player>-->
         <br>
     </div>
 </template>
 
 <script>
-import Hello from './components/Hello'
+import MPlayer from './components/player'
 
 export default {
     name: 'app',
     components: {
-        Hello
+        MPlayer
     }
 }
 </script>

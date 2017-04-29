@@ -14,7 +14,7 @@
                 <span class="aplayer-author">{{ musics[0].author }}</span>
             </div>
             <div class="aplayer-lrc">
-                <div class="aplayer-lrc-contents" style="transform: translateY(0); -webkit-transform: translateY(0);">
+                <div class="aplayer-lrc-contents" style="transform: translateY(0); -webkit-transform: translateY(0);" ref="lrcContents">
                     <p v-for="line in lrc">{{ line }}</p>
                 </div>
             </div>
@@ -53,7 +53,7 @@
             <ol>
                 <li v-for="(music, index) in musics" :class="{'aplayer-list-light': index == currIndex}" @click="playMusic(index)">
                     <span class="aplayer-list-cur" style="background: #b7daff"></span>
-                    <span class="aplayer-list-index">{{ index +1 }}</span>
+                    <span class="aplayer-list-index">{{ index + 1 }}</span>
                     <span class="aplayer-list-title">{{ music.title }}</span>
                     <span class="aplayer-list-author">{{ music.author}}</span>
                 </li>
@@ -75,7 +75,7 @@ export default {
             theme: '#b7daff',
             isPlaying: false,
             currIndex: 0,
-
+            lrc: [],
             musics: [{
                 title: '借我',
                 author: '谢春花',
@@ -85,17 +85,6 @@ export default {
                 author: '薛之谦',
                 url: 'http://ooyhwygfv.bkt.clouddn.com/%E8%96%9B%E4%B9%8B%E8%B0%A6%20-%20%E6%9A%A7%E6%98%A7.mp3'
             }
-            ],
-            lrc: ['作曲 : 谢知非',
-                '作词 : 谢知非/锦屏',
-                '编曲/混音：小皮',
-                '吉他 : 卢山/小皮',
-                '借我十年',
-                '借我亡命天涯的勇敢',
-                '借我说得出口的旦旦誓言',
-                '借我孤绝如初见',
-                '借我不惧碾压的鲜活',
-                '借我生猛与莽撞不问明天'
             ]
         }
     },
@@ -122,6 +111,34 @@ export default {
             this.audio = new Audio(this.musics[this.currIndex].url)
             this.audio.play()
             this.isPlaying = true
+        },
+        getLrc() {
+            console.log('data')
+            this.$http.get('/api').then(res => {
+                console.log(res)
+                const lyric = res.body.split('\n');
+                let lrc = [];
+                const lyricLen = lyric.length;
+                for (let i = 0; i < lyricLen; i++) {
+                    // match lrc time
+                    const lrcTimes = lyric[i].match(/\[(\d{2}):(\d{2})\.(\d{2,3})]/g);
+                    // match lrc text
+                    const lrcText = lyric[i].replace(/\[(\d{2}):(\d{2})\.(\d{2,3})]/g, '').replace(/^\s+|\s+$/g, '');
+
+                    if (lrcTimes != null) {
+                        // handle multiple time tag
+                        const timeLen = lrcTimes.length;
+                        for (let j = 0; j < timeLen; j++) {
+                            const oneTime = /\[(\d{2}):(\d{2})\.(\d{2,3})]/.exec(lrcTimes[j]);
+                            const lrcTime = (oneTime[1]) * 60 + parseInt(oneTime[2]) + parseInt(oneTime[3]) / ((oneTime[3] + '').length === 2 ? 100 : 1000);
+                            lrc.push([lrcTime, lrcText]);
+                        }
+                    }
+                }
+                // sort by time
+                // lrc.sort((a, b) => a[0] - b[0]);
+                this.lrc = lrc
+            })
         }
 
     },
@@ -130,6 +147,14 @@ export default {
             if (!this.audio) {
                 this.audio = new Audio(this.musics[this.currIndex].url)
             }
+            this.getLrc()
+            var lrcContents = this.$refs.lrcContents
+            let lrcIndex = 0
+            setInterval(() => {
+                lrcIndex++
+                lrcContents.style.transform = `translateY(${-lrcIndex * 16}px)`
+                // lrcContents.style.webkitTransform = `translateY(${-lrcIndex * 16}px)`
+            }, 1000)
         })
     }
 }

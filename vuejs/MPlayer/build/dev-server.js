@@ -11,6 +11,7 @@ var express = require('express')
 var webpack = require('webpack')
 var proxyMiddleware = require('http-proxy-middleware')
 var webpackConfig = require('./webpack.dev.conf')
+var fs = require('fs')
 
 // default port where dev server listens for incoming traffic
 var port = process.env.PORT || config.dev.port
@@ -23,13 +24,19 @@ var proxyTable = config.dev.proxyTable
 var app = express()
 var compiler = webpack(webpackConfig)
 
+app.get('/api', (req, resp) => {
+  fs.readFile('薛之谦-演员.lrc', (err, data) => {
+    resp.end(data)
+  })
+})
+
 var devMiddleware = require('webpack-dev-middleware')(compiler, {
   publicPath: webpackConfig.output.publicPath,
   quiet: true
 })
 
 var hotMiddleware = require('webpack-hot-middleware')(compiler, {
-  log: () => {}
+  log: () => { }
 })
 // force page reload when html-webpack-plugin template changes
 compiler.plugin('compilation', function (compilation) {
