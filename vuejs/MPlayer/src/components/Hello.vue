@@ -51,8 +51,8 @@
         </div>
         <div class="aplayer-list">
             <ol>
-                <li v-for="(music, index) in musics" :class="{'aplayer-list-light': index == 0}">
-                    <span class="aplayer-list-cur" :style="'background: ' + theme"></span>
+                <li v-for="(music, index) in musics" :class="{'aplayer-list-light': index == currIndex}" @click="playMusic(index)">
+                    <span class="aplayer-list-cur" style="background: #b7daff"></span>
                     <span class="aplayer-list-index">{{ index +1 }}</span>
                     <span class="aplayer-list-title">{{ music.title }}</span>
                     <span class="aplayer-list-author">{{ music.author}}</span>
@@ -153,8 +153,8 @@ $aplayer-height-lrc: $aplayer-height+$lrc-height - 6;
     }
     &.aplayer {
         .aplayer-pic {
-            height: 64px;
-            width: 64px;
+            height: 90px;
+            width: 90px;
         }
 
         .aplayer-info {
