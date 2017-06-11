@@ -28,7 +28,9 @@
                     </div>
                 </div>
                 <div class="aplayer-time">
-                    <span class="aplayer-time-inner"> - <span class="aplayer-ptime">00:00</span> / <span class="aplayer-dtime">00:00</span>
+                    <span class="aplayer-time-inner"> -
+                        <span class="aplayer-ptime">00:00</span> /
+                        <span class="aplayer-dtime">00:00</span>
                     </span>
                     <div class="aplayer-volume-wrap">
                         <button type="button" class="aplayer-icon aplayer-icon-volume-down">
@@ -113,22 +115,16 @@ export default {
             this.isPlaying = true
         },
         getLrc() {
-            console.log('data')
-            this.$http.get('/api').then(res => {
+            this.$http.get('/api').then((res) => {
                 console.log(res)
                 const lyric = res.body.split('\n');
                 let lrc = [];
                 const lyricLen = lyric.length;
                 for (let i = 0; i < lyricLen; i++) {
-                    // match lrc time
                     const lrcTimes = lyric[i].match(/\[(\d{2}):(\d{2})\.(\d{2,3})]/g);
-                    // match lrc text
                     const lrcText = lyric[i].replace(/\[(\d{2}):(\d{2})\.(\d{2,3})]/g, '').replace(/^\s+|\s+$/g, '');
-
-                    if (lrcTimes != null) {
-                        // handle multiple time tag
-                        const timeLen = lrcTimes.length;
-                        for (let j = 0; j < timeLen; j++) {
+                    if (lrcTimes) {
+                        for (let j = 0; j < lrcTimes.length; j++) {
                             const oneTime = /\[(\d{2}):(\d{2})\.(\d{2,3})]/.exec(lrcTimes[j]);
                             const lrcTime = (oneTime[1]) * 60 + parseInt(oneTime[2]) + parseInt(oneTime[3]) / ((oneTime[3] + '').length === 2 ? 100 : 1000);
                             lrc.push([lrcTime, lrcText]);
