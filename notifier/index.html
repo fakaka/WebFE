@@ -1,0 +1,460 @@
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+    <style>
+        html {
+            background: #fff;
+            color: #000
+        }
+
+        * {
+            margin: 0;
+            padding: 0
+        }
+
+        body,
+        button,
+        input,
+        select,
+        textarea {
+            font: 12px Microsoft YaHei, arial, Helvetica, sans-serif
+        }
+
+        input,
+        select,
+        textarea {
+            font-size: 100%
+        }
+
+        fieldset,
+        img {
+            border: none;
+            vertical-align: middle
+        }
+
+        address,
+        caption,
+        cite,
+        code,
+        dfn,
+        em,
+        th,
+        var {
+            font-style: normal;
+            font-weight: 400
+        }
+
+        ol,
+        ul {
+            list-style: none
+        }
+
+        h1,
+        h2,
+        h3,
+        h4,
+        h5,
+        h6 {
+            font-size: 100%;
+            font-weight: 400
+        }
+
+        a {
+            transition: color .2s
+        }
+
+        a,
+        a:hover,
+        ins {
+            text-decoration: none
+        }
+
+        .clearfix:after,
+        .clearfix:before {
+            content: "";
+            display: table
+        }
+
+        .clearfix:after {
+            clear: both;
+            overflow: hidden
+        }
+
+        .clearfix {
+            zoom: 1
+        }
+
+        .clear {
+            clear: both;
+            display: block;
+            font-size: 0;
+            height: 0;
+            line-height: 0;
+            overflow: hidden
+        }
+
+        .hide {
+            display: none
+        }
+
+        .block {
+            display: block
+        }
+
+        .icon {
+            display: inline-block;
+            background-image: url(//s1.hdslb.com/bfs/static/phoenix/home/static/img/icons.afbff55.png)
+        }
+
+        .bili-wrapper {
+            margin: 0 auto;
+            width: 1160px
+        }
+
+        @media screen and (max-width:1400px) {
+            .bili-wrapper {
+                width: 980px
+            }
+        }
+
+        .bili-wrapper .l-con {
+            float: left;
+            width: 900px
+        }
+
+        @media screen and (max-width:1400px) {
+            .bili-wrapper .l-con {
+                width: 720px
+            }
+        }
+
+        .bili-wrapper .r-con {
+            width: 260px;
+            float: right
+        }
+
+        .lazy-img {
+            background: url(//s1.hdslb.com/bfs/static/phoenix/home/static/img/img_loading.a351656.png) 50% no-repeat;
+            width: 100%;
+            height: 100%;
+            display: inline-block
+        }
+
+        .lazy-img img {
+            display: block;
+            width: 100%;
+            height: 100%
+        }
+
+        .zone-wrap-module {
+            padding-bottom: 30px
+        }
+
+        .zone-module .zone-rank {
+            /*float: right;*/
+            width: 260px;
+            min-height: 360px
+        }
+
+        .new-comers-module .zone-title .headline .link-more {
+            float: right;
+            width: 52px;
+            height: 22px;
+            line-height: 22px;
+            background-color: #fff;
+            border: 1px solid #ccd0d7;
+            color: #555;
+            border-radius: 4px;
+            text-align: center;
+            margin: 0 0 0 10px;
+            transition: all .2s
+        }
+
+        .bili-tab {
+            overflow: hidden;
+            zoom: 1
+        }
+
+        .bili-tab .bili-tab-item {
+            float: left;
+            position: relative;
+            height: 20px;
+            line-height: 20px;
+            cursor: pointer;
+            padding: 1px 0 2px;
+            border-bottom: 1px solid transparent;
+            margin-left: 12px;
+            transition: .2s;
+            transition-property: border, color
+        }
+
+        .bili-tab .bili-tab-item:before {
+            content: "";
+            display: none;
+            position: absolute;
+            left: 50%;
+            margin-left: -3px;
+            bottom: 0;
+            width: 0;
+            height: 0;
+            border: 3px dashed #00a1d6;
+            border-bottom-style: solid;
+            border-top: 0;
+            border-left-color: transparent;
+            border-right-color: transparent
+        }
+
+        .bili-tab .bili-tab-item.on {
+            background-color: transparent;
+            border-color: #00a1d6;
+            color: #00a1d6
+        }
+
+        .bili-tab .bili-tab-item.on:before {
+            display: block
+        }
+
+        .bili-tab .bili-tab-item:hover {
+            color: #00a1d6
+        }
+
+        .bili-tab .bili-tab-item:first-child {
+            margin-left: 0
+        }
+
+        .sec-rank .rank-head .rank-tab {
+            margin-left: 20px;
+            float: left
+        }
+
+        .sec-rank .rank-list-wrap {
+            width: 200%;
+            overflow: hidden;
+            zoom: 1;
+            transition: all .2s linear
+        }
+
+        .sec-rank .rank-list-wrap .rank-list {
+            width: 50%;
+            float: left
+        }
+
+        .sec-rank .rank-list-wrap .rank-list .state {
+            line-height: 100px
+        }
+
+        .sec-rank .rank-list-wrap.show-origin {
+            margin-left: -100%
+        }
+
+        .rank-list .rank-item {
+            position: relative;
+            padding-left: 25px;
+            margin-top: 20px;
+            overflow: hidden
+        }
+
+        .rank-list .rank-item.first {
+            margin-top: 0
+        }
+
+        .rank-list .rank-item .ri-num {
+            position: absolute;
+            color: #fff;
+            height: 18px;
+            line-height: 18px;
+            top: 0;
+            left: 0;
+            font-size: 12px;
+            min-width: 12px;
+            text-align: center;
+            background-color: #b8c0cc;
+            border-radius: 4px;
+            padding: 0 3px;
+            font-weight: bolder;
+            font-style: normal
+        }
+
+        .rank-list .rank-item.highlight .ri-num {
+            background: #f25d8e
+        }
+
+        .rank-list .rank-item .ri-info-wrap {
+            position: relative;
+            display: block;
+            cursor: pointer
+        }
+
+        .rank-list .rank-item .ri-info-wrap .w-later {
+            right: 160px
+        }
+
+        .rank-list .rank-item .ri-info-wrap:hover .w-later {
+            display: block
+        }
+
+        .rank-list .rank-item .ri-preview {
+            margin-right: 5px;
+            width: 80px;
+            height: 50px;
+            float: left;
+            display: none;
+            border-radius: 4px;
+            overflow: hidden
+        }
+
+        .rank-list .rank-item.show-detail .ri-preview {
+            display: block
+        }
+
+        .rank-list .rank-item .ri-detail {
+            float: left
+        }
+
+        .rank-list .rank-item .ri-detail .ri-title {
+            line-height: 18px;
+            height: 18px;
+            overflow: hidden;
+            color: #222
+        }
+
+        .rank-list .rank-item .ri-detail .ri-point {
+            line-height: 12px;
+            color: #99a2aa;
+            height: 12px;
+            margin-top: 5px;
+            display: none;
+            overflow: hidden
+        }
+
+        .rank-list .rank-item.show-detail .ri-detail .ri-title {
+            height: 36px;
+            line-height: 18px;
+            margin-top: -3px;
+            width: 150px;
+            padding: 0
+        }
+
+        .rank-list .rank-item.show-detail .ri-point {
+            display: block
+        }
+
+        .rank-list .rank-item:hover .ri-title {
+            color: #00a1d6
+        }
+
+        .sec-rank .more-link {
+            display: block;
+            height: 24px;
+            line-height: 24px;
+            background-color: #e5e9ef;
+            text-align: center;
+            border: 1px solid #e0e6ed;
+            color: #222;
+            border-radius: 4px;
+            transition: .2s;
+        }
+
+        .sec-rank .rank-head h3 {
+            float: left;
+            font-size: 18px;
+            font-weight: 400;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="zone-module">
+        <section class="sec-rank zone-rank">
+            <header class="rank-head">
+                <h3>动画</h3>
+            </header>
+            <div class="rank-list-wrap">
+                <ul class="rank-list hot-list">
+                    <!---->
+                    <li class="rank-item  show-detail highlight"><i class="ri-num">1</i>
+                        <a href="/video/av11301801/" target="_blank" title="七月新番完整版介绍！看完就知道女孩子裙底下到底有什么了 播放:482331 20: 1" class="ri-info-wrap clearfix">
+                            <div class="lazy-img ri-preview"><img alt="七月新番完整版介绍！看完就知道女孩子裙底下到底有什么了" src="https://i1.hdslb.com/bfs/archive/62fd33c9fe5aaa63929e2428a2075cf8d66e59e9.jpg@100w_63h.webp"></div>
+                            <div class="ri-detail">
+                                <p class="ri-title">七月新番完整版介绍！看完就知道女孩子裙底下到底有什么了</p>
+                                <p class="ri-point">综合评分：64.5万</p>
+                            </div>
+                            <div class="watch-later-trigger w-later"></div>
+                        </a>
+                    </li>
+                    <li class="rank-item show-detail highlight"><i class="ri-num">2</i>
+                        <a href="/video/av11291781/" target="_blank" title="【FGO手书】达拉崩吧 播放:261098 3:27" class="ri-info-wrap clearfix">
+                            <div class="lazy-img ri-preview"><img alt="七月新番完整版介绍！看完就知道女孩子裙底下到底有什么了" src="https://i1.hdslb.com/bfs/archive/62fd33c9fe5aaa63929e2428a2075cf8d66e59e9.jpg@100w_63h.webp"></div>
+                            <div class="ri-detail">
+                                <p class="ri-title">【FGO手书】达拉崩吧</p>
+                                <p class="ri-point">综合评分：28.4万</p>
+                            </div>
+                            <div class="watch-later-trigger w-later"></div>
+                        </a>
+                    </li>
+                    <li class="rank-item  highlight"><i class="ri-num">3</i>
+                        <a href="/video/av11352163/" target="_blank" title="DC最重要的闪电侠，他是... 播放:140752 7:48" class="ri-info-wrap clearfix">
+                            <!---->
+                            <div class="ri-detail">
+                                <p class="ri-title">DC最重要的闪电侠，他是...</p>
+                                <p class="ri-point">综合评分：13.4万</p>
+                            </div>
+                            <!---->
+                        </a>
+                    </li>
+                    <li class="rank-item"><i class="ri-num">4</i>
+                        <a href="/video/av11316205/" target="_blank" title="妈妈我看的猫和老鼠怎么和他们看的不一样？——上舰猫（猫和老鼠鬼畜配音4） 播放:104938 9: 5" class="ri-info-wrap clearfix">
+                            <!---->
+                            <div class="ri-detail">
+                                <p class="ri-title">妈妈我看的猫和老鼠怎么和他们看的不一样？——上舰猫（猫和老鼠鬼畜配音4）</p>
+                                <p class="ri-point">综合评分：12.7万</p>
+                            </div>
+                            <!---->
+                        </a>
+                    </li>
+                    <li class="rank-item"><i class="ri-num">5</i>
+                        <a href="/video/av11337775/" target="_blank" title="【进击的巨人/史诗/AMV】 献出心脏——为自由而战！！！ 播放:64663 3:28" class="ri-info-wrap clearfix">
+                            <!---->
+                            <div class="ri-detail">
+                                <p class="ri-title">【进击的巨人/史诗/AMV】 献出心脏——为自由而战！！！</p>
+                                <p class="ri-point">综合评分：11.1万</p>
+                            </div>
+                            <!---->
+                        </a>
+                    </li>
+                    <li class="rank-item"><i class="ri-num">6</i>
+                        <a href="/video/av11318537/" target="_blank" title="【M漫讯】「2017」七月新番推荐 播放:78928 14:40" class="ri-info-wrap clearfix">
+                            <!---->
+                            <div class="ri-detail">
+                                <p class="ri-title">【M漫讯】「2017」七月新番推荐</p>
+                                <p class="ri-point">综合评分：10.9万</p>
+                            </div>
+                            <!---->
+                        </a>
+                    </li>
+                    <li class="rank-item"><i class="ri-num">7</i>
+                        <a href="/video/av11350209/" target="_blank" title="【六道笑点】一个男UP做的卫生巾广告！ 播放:95223 5:57" class="ri-info-wrap clearfix">
+                            <!---->
+                            <div class="ri-detail">
+                                <p class="ri-title">【六道笑点】一个男UP做的卫生巾广告！</p>
+                                <p class="ri-point">综合评分：9.7万</p>
+                            </div>
+                            <!---->
+                        </a>
+                    </li>
+                </ul>
+                <ul class="rank-list origin-list">
+                    <li class="state">
+                        <div class="b-loading">
+                            <!---->
+                            <!---->
+                        </div>
+                    </li>
+                </ul>
+            </div> <a href="https://www.bilibili.com/ranking#!/all/1/1/3/" target="_blank" class="more-link">查看更多<i class="icon icon-arrow-r"></i></a></section>
+    </div>
+</body>
+
+</html>
