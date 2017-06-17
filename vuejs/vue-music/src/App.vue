@@ -1,13 +1,24 @@
 <template>
-  <div id="app">
-    <img src="./assets/logo.png">
-    <router-view></router-view>
-  </div>
+    <div id="app">
+        <m-header></m-header>
+        <tab></tab>
+        <keep-alive>
+            <router-view></router-view>
+        </keep-alive>
+        <!--<player></player>-->
+    </div>
 </template>
 
-<script>
+<script type="text/ecmascript-6">
+import MHeader from './components/m-header/m-header'
+// import Player from 'components/player/player'
+import Tab from './components/tab/tab'
+
 export default {
-  name: 'app'
+    components: {
+        MHeader,
+        Tab
+    }
 }
 </script>
 
