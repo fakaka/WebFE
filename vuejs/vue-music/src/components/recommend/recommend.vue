@@ -1,12 +1,12 @@
 <template>
     <div class="recommend" ref="recommend">
-        <scroll class="recommend-content">
+        <scroll class="recommend-content" :data="discList" ref="scroll">
             <div>
                 <div v-if="recommends.length" class="slider-wrapper" ref="sliderWrapper">
                     <slider>
                         <div v-for="item in recommends">
                             <a :href="item.linkUrl">
-                                <img class="needsclick" :src="item.picUrl">
+                                <img class="needsclick" @load="loadImage" :src="item.picUrl">
                             </a>
                         </div>
                     </slider>
@@ -14,9 +14,9 @@
                 <div class="recommend-list">
                     <h1 class="list-title">热门歌单推荐</h1>
                     <ul>
-                        <li v-for="item in discList" class="item">
+                        <li v-for="item in discList" class="item" @click="selectItem(item)">
                             <div class="icon">
-                                <img width="60" height="60" :src="item.imgurl">
+                                <img width="60" height="60" v-lazy="item.imgurl">
                             </div>
                             <div class="text">
                                 <h2 class="name" v-html="item.creator.name"></h2>
@@ -26,6 +26,9 @@
                     </ul>
                 </div>
             </div>
+            <div class="loading-container" v-show="!discList.length">
+                <loading></loading>
+            </div>
         </scroll>
     </div>
 </template>
@@ -34,6 +37,7 @@
 import { getRecommend, getDiscList } from '../../api/recommend'
 import Slider from '../../base/slider/slider'
 import Scroll from '../../base/scroll/scroll'
+import Loading from '../../base/loading/loading'
 
 export default {
     name: 'recommend',
@@ -57,6 +61,15 @@ export default {
                 if (res.code == 0)
                     this.discList = res.data.list
             })
+        },
+        loadImage() {
+            if (!this.checkLoading) {
+                this.$refs.scroll.refresh()
+                this.checkLoading = true
+            }
+        },
+        selectItem(item) {
+
         }
     },
     computed: {
@@ -72,7 +85,7 @@ export default {
         clearTimeout(this.timer)
     },
     components: {
-        Slider, Scroll
+        Slider, Scroll, Loading
     }
 }
 </script>
