@@ -1,17 +1,18 @@
 <template>
     <transition name="slide">
-        <div>singer-detail</div>
+        <music-list :title="title" :bg-image="bgImage" :songs="songs"></music-list>
     </transition>
 </template>
 
 <script>
+import MusicList from '../music-list/music-list'
 
 export default {
     name: 'singer-detail',
     props: {},
     data() {
         return {
-
+            
         }
     },
     methods: {
@@ -19,6 +20,9 @@ export default {
     computed: {
     },
     mount() {
+    },
+    components: {
+        MusicList
     }
 }
 </script>
