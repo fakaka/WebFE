@@ -1,24 +1,118 @@
 <template>
     <div class="music-list">
-        666
+        <div class="back" @click="back">
+            <i class="icon-back"></i>
+        </div>
+        <h1 class="title" v-html="title"></h1>
+        <div class="bg-image" :style="bgStyle" ref="bgImage">
+            <div class="play-wrapper">
+                <div class="play" v-show="songs.length > 0" @click="random" ref="playBtn">
+                    <i class="icon-play"></i>
+                    <span class="text">随机播放全部</span>
+                </div>
+            </div>
+            <div class="filter" ref="filter"></div>
+        </div>
+        <div class="bg-layer" ref="layer"></div>
+        <scroll :data="songs" @scroll="scroll" :listen-scroll="listenScroll" :probe-type="probeType" class="list" ref="list">
+            <div class="song-list-wrapper">
+                <song-list :songs="songs"></song-list>
+            </div>
+            <div class="loading-container" v-show="!songs.length">
+                <loading></loading>
+            </div>
+        </scroll>
     </div>
 </template>
 
 <script>
+import Scroll from '../../base/scroll/scroll'
+import Loading from '../../base/loading/loading'
+import SongList from '../../base/song-list/song-list'
+import { prefixStyle } from '../../common/js/dom'
+
+const transform = prefixStyle('transform')
+const backdrop = prefixStyle('backdrop-filter')
 
 export default {
     name: 'music-list',
-    props: {},
+    props: {
+        title: {
+            type: String,
+            default: ''
+        },
+        bgImage: {
+            type: String,
+            default: ''
+        },
+        songs: {
+            type: Array,
+            default: []
+        }
+    },
     data() {
         return {
-
+            scrollY: 0
         }
     },
     methods: {
+        scroll(pos) {
+            this.scrollY = pos.y
+        },
+        back() {
+            this.$router.back()
+        },
+        random() {
+            console.log('随机播放音乐')
+        }
+    },
+    watch: {
+        // FIXME 结合mounted()函数,把代码修改的简洁一点
+        scrollY(newY) {
+            let translateY = Math.max(newY, this.minTranslateY)
+            this.$refs.layer.style[transform] = `translate3d(0,${translateY}px,0)`
+
+            let zIndex = 0, scale = 1, blur = 0
+            const percent = Math.abs(newY / this.imageHeight)
+            if (newY > 0) {
+                scale = 1 + percent
+                zIndex = 10
+            } else {
+                blur = Math.min(percent, 20)
+            }
+            this.$refs.filter.style[backdrop] = `blur(${blur}px)`
+
+            if (newY < this.minTranslateY) {
+                zIndex = 10
+                this.$refs.bgImage.style.paddingTop = 0
+                this.$refs.bgImage.style.height = '40px'
+                this.$refs.playBtn.style.display = 'none'
+            } else {
+                this.$refs.bgImage.style.paddingTop = '70%'
+                this.$refs.bgImage.style.height = 0
+                this.$refs.playBtn.style.display = ''
+            }
+
+            this.$refs.bgImage.style.zIndex = zIndex
+            this.$refs.bgImage.style['transform'] = `scale(${scale})`
+        }
     },
     computed: {
+        bgStyle() {
+            return `background-image:url(${this.bgImage})`
+        }
     },
-    mount() {
+    mounted() {
+        this.imageHeight = this.$refs.bgImage.clientHeight
+        this.minTranslateY = - this.imageHeight + 40
+        this.$refs.list.$el.style.top = this.imageHeight + 'px'
+    },
+    created() {
+        this.probeType = 3
+        this.listenScroll = true
+    },
+    components: {
+        Scroll, Loading, SongList
     }
 }
 </script>

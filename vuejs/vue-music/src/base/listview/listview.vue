@@ -207,7 +207,7 @@ export default {
           color: $color-theme
     .list-fixed
       position: absolute
-      top: 0
+      top: -1
       left: 0
       width: 100%
       .fixed-title
