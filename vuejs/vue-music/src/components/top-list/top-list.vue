@@ -1,38 +1,40 @@
 <template>
     <transition name="slide">
-        <music-list :title="title" :bg-image="bgImage" :songs="songs"></music-list>
+        <music-list :rank="rank" :title="title" :bg-image="bgImage" :songs="songs"></music-list>
     </transition>
 </template>
 
 <script>
 import MusicList from '../music-list/music-list'
+import { getMusicList } from '../../api/rank'
 import { mapGetters } from 'vuex'
-import { getSongList } from '../../api/recommend'
 import { createSong } from 'common/js/song'
 
 export default {
-    name: '',
+    name: 'top-list',
     props: {},
     data() {
         return {
-            songs: []
+            songs: [],
+            rank: true
         }
     },
     methods: {
-        _getSongList() {
-            if (!this.disc.dissid) {
-                this.$router.push('/recommend')
+        _getMusicList() {
+            if (!this.topList.id) {
+                this.$router.push('/rank')
                 return
             }
-            getSongList(this.disc.dissid).then(res => {
+            getMusicList(this.topList.id).then(res => {
                 if (res.code == 0) {
-                    this.songs = this._normalizeSongs(res.cdlist[0].songlist)
+                    this.songs = this._normalizeSongs(res.songlist)
                 }
             })
         },
         _normalizeSongs(list) {
             let ret = []
-            list.forEach((musicData) => {
+            list.forEach((item) => {
+                const musicData = item.data
                 if (musicData.songid && musicData.albummid) {
                     ret.push(createSong(musicData))
                 }
@@ -42,17 +44,17 @@ export default {
     },
     computed: {
         title() {
-            return this.disc.dissname
+            return this.topList.topTitle
         },
         bgImage() {
-            return this.disc.imgurl
+            return this.songs.length ? this.songs[0].image : ''
         },
         ...mapGetters([
-            'disc'
+            'topList'
         ])
     },
     created() {
-        this._getSongList()
+        this._getMusicList()
     },
     components: {
         MusicList
@@ -62,7 +64,7 @@ export default {
 
 <style scoped lang="stylus" rel="stylesheet/stylus">
   .slide-enter-active, .slide-leave-active
-    transition: all 0.3s
+    transition: all 0.3s ease
 
   .slide-enter, .slide-leave-to
     transform: translate3d(100%, 0, 0)

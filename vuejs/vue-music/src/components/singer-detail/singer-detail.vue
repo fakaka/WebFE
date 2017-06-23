@@ -33,12 +33,12 @@ export default {
         },
         _normalizeSongs(list) {
             let ret = []
-            list.forEach(function (item) {
+            list.forEach((item) => {
                 let { musicData } = item
                 if (musicData.songid && musicData.albummid) {
                     ret.push(createSong(musicData))
                 }
-            }, this)
+            })
             return ret
         }
     },
