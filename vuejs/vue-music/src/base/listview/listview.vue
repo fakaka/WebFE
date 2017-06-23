@@ -1,7 +1,7 @@
 <template>
     <scroll class="listview" @scroll="scroll" :data="listData" :listen-scroll="listenScroll" :probe-type="probeType" ref="listview">
         <ul>
-            <li v-for="group in listData" class="list-group" ref="listGroup">
+            <li v-for="group in listData" :key="group" class="list-group" ref="listGroup">
                 <h2 class="list-group-title">{{group.title}}</h2>
                 <uL>
                     <li @click="selectItem(item)" v-for="item in group.items" class="list-group-item">

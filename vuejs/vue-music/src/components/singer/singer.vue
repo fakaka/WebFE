@@ -10,10 +10,12 @@ import { getSingerList } from '../../api/singer'
 import Singer from '../../common/js/singer'
 import ListView from '../../base/listview/listview'
 import { mapMutations } from 'vuex'
+import { playlistMixin } from '../../common/js/mixin'
 
 
 export default {
     name: 'singer',
+    mixins: [playlistMixin],
     props: {},
     data() {
         return {
@@ -21,6 +23,11 @@ export default {
         }
     },
     methods: {
+        handlePlaylist(playList) {
+            const bottom = playList.length > 0 ? '60px' : 0
+            this.$refs.singer.$el.style.bottom = bottom
+            this.$refs.list.refresh()
+        },
         _getSingerList() {
             getSingerList().then(res => {
                 if (res.code == 0)

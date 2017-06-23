@@ -30,6 +30,7 @@ import Scroll from '../../base/scroll/scroll'
 import Loading from '../../base/loading/loading'
 import SongList from '../../base/song-list/song-list'
 import { prefixStyle } from '../../common/js/dom'
+import { playlistMixin } from '../../common/js/mixin'
 import { mapActions } from 'vuex'
 
 const transform = prefixStyle('transform')
@@ -37,6 +38,7 @@ const backdrop = prefixStyle('backdrop-filter')
 
 export default {
     name: 'music-list',
+    mixins: [playlistMixin],
     props: {
         title: {
             type: String,
@@ -57,6 +59,11 @@ export default {
         }
     },
     methods: {
+        handlePlaylist(playList) {
+            const bottom = playList.length > 0 ? '60px' : 0
+            this.$refs.list.$el.style.bottom = bottom
+            this.$refs.list.refresh()
+        },
         scroll(pos) {
             this.scrollY = pos.y
         },
@@ -64,7 +71,7 @@ export default {
             this.$router.back()
         },
         random() {
-            console.log('随机播放音乐')
+            this.randomPlay({ list: this.songs })
         },
         selectItem(item, index) {
             this.selectPlay({
@@ -72,7 +79,8 @@ export default {
             })
         },
         ...mapActions([
-            'selectPlay'
+            'selectPlay',
+            'randomPlay'
         ])
     },
     watch: {
