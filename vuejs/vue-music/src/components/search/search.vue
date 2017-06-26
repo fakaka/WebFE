@@ -3,7 +3,7 @@
         <div class="search-box-wrapper">
             <search-box @query="onQueryChange" ref="searchBox"></search-box>
         </div>
-        <div class="shortcut-wrapper" ref="shortcutWrapper">
+        <div v-show="!query" class="shortcut-wrapper" ref="shortcutWrapper">
             <div class="shortcut" ref="shortcut">
                 <div class="hot-key">
                     <h1 class="title">热门搜索</h1>
@@ -15,11 +15,16 @@
                 </div>
             </div>
         </div>
+        <div v-show="query" class="search-result" ref="searchResult">
+            <suggest :query="query" ref="suggest"></suggest>
+        </div>
+        <router-view></router-view>
     </div>
 </template>
 
 <script>
 import SearchBox from '../../base/search-box/search-box'
+import Suggest from '../suggest/suggest'
 import { getHotKey } from '../../api/search'
 
 
@@ -53,7 +58,7 @@ export default {
         this._getHotKey()
     },
     components: {
-        SearchBox
+        SearchBox, Suggest
     }
 }
 </script>

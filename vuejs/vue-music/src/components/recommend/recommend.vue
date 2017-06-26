@@ -53,8 +53,8 @@ export default {
         }
     },
     methods: {
-        handlePlaylist(playList) {
-            const bottom = playList.length > 0 ? '60px' : 0
+        handlePlaylist(playlist) {
+            const bottom = playlist.length > 0 ? '60px' : 0
             this.$refs.recommend.style.bottom = bottom
             this.$refs.scroll.refresh()
         },

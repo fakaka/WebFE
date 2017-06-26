@@ -1,5 +1,5 @@
 <template>
-    <div class="player" v-show="playList.length">
+    <div class="player" v-show="playlist.length">
         <transition name="normal" @enter="enter" @after-enter="afterEnter" @leave="leave" @after-leave="afterLeave">
             <div class="normal-player" v-show="fullScreen">
                 <div class="background">
@@ -124,11 +124,11 @@ export default {
             if (!this.songReady) {
                 return
             }
-            if (this.playList.length == 1) {
+            if (this.playlist.length == 1) {
                 this.loop()
             } else {
                 let index = this.currentIndex + 1
-                if (index === this.playList.length) {
+                if (index === this.playlist.length) {
                     index = 0
                 }
                 this.setCurrentIndex(index)
@@ -139,7 +139,7 @@ export default {
             if (!this.songReady) {
                 return
             }
-            if (this.playList.length == 1) {
+            if (this.playlist.length == 1) {
                 this.loop()
             } else {
                 let index = this.currentIndex - 1
@@ -374,7 +374,7 @@ export default {
         ...mapGetters([
             'fullScreen',
             'playing',
-            'playList',
+            'playlist',
             'currentSong',
             'currentIndex',
             'mode',
@@ -636,7 +636,7 @@ export default {
         flex: 0 0 30px
         width: 30px
         padding: 0 10px
-        .icon-play-mini, .icon-pause-mini, .icon-playList
+        .icon-play-mini, .icon-pause-mini, .icon-playlist
           font-size: 30px
           color: $color-theme-d
         .icon-mini
