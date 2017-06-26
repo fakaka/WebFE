@@ -1,6 +1,6 @@
 <template>
     <scroll :data="result" :pullup="pullup" :beforeScroll="beforeScroll"
-          @scrollToEnd="searchMore" class="suggest" ref="suggest">
+          @scrollToEnd="searchMore" @beforeScroll="listScroll" class="suggest" ref="suggest">
         <ul class="suggest-list">
             <li v-for="item in result" @click="selectItem(item)" class="suggest-item">
                 <div class="icon">
@@ -12,9 +12,9 @@
             </li>
             <loading v-show="hasMore" title=""></loading>
         </ul>
-        <!--<div v-show="!hasMore && !result.length" class="no-result-wrapper">
+        <div v-show="!hasMore && !result.length" class="no-result-wrapper">
             <no-result title="抱歉，暂无搜索结果"></no-result>
-        </div>-->
+        </div>
     </scroll>
 </template>
 
@@ -23,6 +23,7 @@ import { search } from '../../api/search'
 import { createSong } from 'common/js/song'
 import Scroll from '../../base/scroll/scroll'
 import Loading from '../../base/loading/loading'
+import NoResult from '../../base/no-result/no-result'
 import Singer from 'common/js/singer'
 import {mapMutations, mapActions} from 'vuex'
 
@@ -52,6 +53,9 @@ export default {
         }
     },
     methods: {
+        refresh() {
+            this.$refs.suggest.refresh()
+        },
         search(){
             this.page = 1
             this.hasMore = true
@@ -90,7 +94,7 @@ export default {
             }else {
                 this.insertSong(item)
             }
-            // this.$emit('select', item)
+            this.$emit('select', item)
         },
         searchMore(){
             if(!this.hasMore){
@@ -103,6 +107,9 @@ export default {
                     this._checkMore(res.data)
                 }
             })
+        },
+        listScroll(){
+            this.$emit('listScroll')
         },
         _genResult(data) {
             let ret = []
@@ -147,7 +154,7 @@ export default {
         this.search(this.query,this.page)
     },
     components: {
-        Scroll, Loading
+        Scroll, Loading, NoResult
     }
 }
 </script>

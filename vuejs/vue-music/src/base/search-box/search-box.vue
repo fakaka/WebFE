@@ -28,8 +28,10 @@ export default {
         },
         setQuery(query) {
             this.query = query
+        },
+        blur(){
+            this.$refs.query.blur()
         }
-
     },
     computed: {
     },
