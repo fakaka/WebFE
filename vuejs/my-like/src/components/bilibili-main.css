@@ -1,0 +1,462 @@
+.video-info-module{
+
+    position:absolute;
+    top:0;
+    left:0;
+    width:320px;
+    border:1px solid #ccd0d7;
+
+    border-radius:4px;
+
+    box-shadow:0 2px 4px rgba(0,0,0,.16);
+
+    box-sizing:border-box;
+
+    z-index:10020;
+
+    overflow:hidden;
+
+    background-color:#fff;
+
+    padding:12px
+}
+.video-info-module .v-title{
+overflow:hidden;
+
+    text-overflow:ellipsis;
+
+    white-space:nowrap;
+
+    height:20px;
+
+    line-height:12px
+
+}
+
+.video-info-module .v-info{
+
+    color:#99a2aa;
+    padding:4px 0 6px
+
+}
+
+.video-info-module .v-info span{
+
+        display:inline-block;
+    vertical-align:top;
+    height:16px;
+    line-height:12px
+
+}
+.video-info-module .v-info .name{
+
+    white-space:nowrap;
+overflow:hidden;
+text-overflow:ellipsis;
+max-width:150px
+
+}
+
+.video-info-module .v-info .line{
+
+    display:inline-block;
+border-left:1px solid #99a2aa;
+height:12px;
+margin:1px 10px 0
+}
+.video-info-module .v-preview{
+
+padding:8px 0 12px;
+border-top:1px solid #e5e9ef;
+height:64px
+}
+.video-info-module .v-preview img{
+
+width:96px;
+height:60px;
+float:left;
+margin-right:8px;
+margin-top:4px;
+border-radius:4px
+}
+.video-info-module .v-preview .txt{
+
+height:60px;
+overflow:hidden;
+line-height:21px;
+word-wrap:break-word;
+word-break:break-all;
+color:#99a2aa
+}
+.video-info-module .v-data{
+
+border-top:1px solid #e5e9ef;
+padding-top:10px
+}
+.video-info-module .v-data span{
+
+white-space:nowrap;
+overflow:hidden;
+text-overflow:ellipsis;
+display:inline-block;
+width:70px;
+color:#99a2aa;
+line-height:12px
+}
+.video-info-module .v-data span .icon{
+
+margin-right:4px;
+vertical-align:top;
+display:inline-block;
+width:12px;
+height:12px
+}
+.video-info-module .v-data .play .icon{
+
+background-position:-282px -90px
+}
+.video-info-module .v-data .danmu .icon{
+
+background-position:-282px -218px
+}
+.video-info-module .v-data .star .icon{
+
+background-position:-282px -346px
+}
+.video-info-module .v-data .coin .icon{
+
+background-position:-282px -410px
+}
+.special-recommend-module{
+
+padding-bottom:30px
+}
+.special-recommend-module .storey-box{
+
+height:160px;
+overflow:hidden
+}
+.special-recommend-module .special{
+
+float:left;
+margin:0 20px 20px 0
+}
+.special-recommend-module .headline{
+
+padding:0 0 15px
+}
+.special-recommend-module .headline .icon_t{
+
+width:40px;
+height:40px;
+margin-right:10px;
+vertical-align:middle;
+float:left;
+margin-top:-10px
+}
+.special-recommend-module .headline .icon_t.icon-special{
+
+background-position:-141px -780px
+}
+.special-recommend-module .headline .name{
+
+font-size:24px;
+line-height:24px;
+font-weight:400;
+margin-right:20px;
+float:left;
+color:#222
+}
+.special-recommend-module .headline .name:hover{
+
+color:#00a1d6
+}
+.special-recommend-module .adpos{
+
+position:relative;
+padding-top:45px
+}
+.special-recommend-module .adpos a{
+
+display:block
+}
+.special-recommend-module .adpos img{
+
+border-radius:4px
+}
+.special-recommend-module .adpos .gg-pic{
+
+position:absolute;
+left:0;
+bottom:0
+}
+.special-module{
+position:relative;
+width:160px;
+height:160px;
+font-size:12px;
+overflow:hidden
+
+}
+.special-module .pic{
+color:#222
+}
+.special-module .pic .pic-box{
+position:relative;
+width:160px;
+height:100px;
+border-radius:4px;
+overflow:hidden
+}
+.special-module .pic .pic-box:hover .w-later{
+display:block
+}
+.special-module .pic .title{
+margin-top:24px;
+word-break:break-all;
+word-wrap:break-word;
+height:40px;
+line-height:20px
+}
+.special-module .pic:hover{
+color:#00a1d6
+}
+.special-module .user{
+position:absolute;
+left:5px;
+top:74px
+}
+.special-module .user .face{
+width:45px;
+height:45px;
+border:2px solid #fff;
+border-radius:50%;
+vertical-align:middle;
+overflow:hidden
+}
+.special-module .user .name{
+width:68px;
+position:absolute;
+left:52px;
+top:28px;
+white-space:nowrap;
+text-overflow:ellipsis;
+overflow:hidden
+}
+.special-module .user .tag{
+width:30px;
+position:absolute;
+left:124px;
+top:28px;
+color:#aaa
+}
+.special-module .user a{
+color:#222
+}
+.special-module .user a:hover{
+color:#00a1d6
+}
+.elevator-module{
+position:fixed;
+z-index:10;
+left:50%;
+top:232px;
+margin-left:590px;
+transition:top .3s
+}
+@media screen and (max-width:1400px){
+.elevator-module{
+margin-left:500px
+}
+
+}
+.elevator-module.edit-state{
+z-index:10001
+}
+.elevator-module .nav-bg{
+opacity:0;
+top:-15px;
+right:0;
+height:100%;
+padding-bottom:20px;
+width:60px;
+position:absolute;
+background:hsla(0,0%,100%,.8);
+border-radius:4px;
+overflow:hidden;
+transition:all .3s cubic-bezier(.68,-.55,.27,1.55)
+}
+.elevator-module .nav-bg .tips-img{
+position:absolute;
+width:117px;
+height:333px;
+background:url(//s1.hdslb.com/bfs/static/phoenix/home/static/img/tab2233.6556ae0.png);
+left:12px;
+top:14px
+}
+.elevator-module .nav-bg.open{
+right:-20px;
+width:200px;
+opacity:1
+}
+.elevator-module .nav-list{
+position:relative;
+background-color:#f6f9fa;
+border:1px solid #e5e9ef;
+overflow:hidden;
+border-radius:4px
+}
+.elevator-module .nav-list .item{
+width:48px;
+height:32px;
+line-height:32px;
+text-align:center;
+transition:background-color .3s,color .3s;
+cursor:pointer;
+-webkit-user-select:none;
+-moz-user-select:none;
+-ms-user-select:none;
+user-select:none
+}
+.elevator-module .nav-list .item.select{
+position:absolute;
+z-index:1;
+background-color:#00a1d6;
+color:#fff
+}
+.elevator-module .nav-list .item.on,.elevator-module .nav-list .item:hover{
+background-color:#00a1d6;
+color:#fff
+}
+.elevator-module .nav-list .customize{
+height:38px;
+line-height:20px;
+padding:8px 0;
+border-top:1px solid #e5e9ef
+}
+.elevator-module .nav-list .customize:hover{
+color:#fff
+}
+.elevator-module .nav-list .customize:hover .icon{
+background-position:-727px -151px
+}
+.elevator-module .nav-list .customize .icon{
+display:block;
+margin:0 auto 4px;
+background-position:-663px -151px;
+height:18px;
+width:18px
+}
+.elevator-module .s-line{
+position:relative;
+border-left:1px solid #ddd;
+border-right:1px solid #ddd;
+height:9px;
+width:30px;
+margin:0 auto
+}
+.elevator-module .back-top{
+position:relative;
+display:block;
+cursor:pointer;
+height:48px;
+background-position:-648px -72px;
+background-color:#f6f9fa;
+border:1px solid #e5e9ef;
+overflow:hidden;
+border-radius:4px
+}
+.elevator-module .back-top:hover{
+background-color:#00a1d6;
+background-position:-714px -72px;
+border-color:#00a1d6
+}
+.elevator-module .app-download{
+position:relative;
+width:50px;
+height:70px
+}
+.elevator-module .app-download .app-icon{
+position:absolute;
+left:-15px;
+width:80px;
+height:80px;
+background-image:url(//s1.hdslb.com/bfs/static/phoenix/home/static/img/app-download.4e2e397.png)
+}
+.elevator-module .app-download .app-tips-icon{
+display:none;
+position:absolute;
+left:-110px;
+top:-20px;
+width:106px;
+height:44px;
+background-image:url(//s1.hdslb.com/bfs/static/phoenix/home/static/img/app-download-tips.38d6c39.png)
+}
+.bangumi-info-module{
+position:absolute;
+width:320px;
+border:1px solid #ccd0d7;
+border-radius:4px;
+box-shadow:0 2px 4px rgba(0,0,0,.16);
+z-index:10020;
+overflow:hidden;
+background-color:#fff;
+box-sizing:border-box;
+padding:12px
+}
+.bangumi-info-module .v-preview{
+height:84px
+}
+.bangumi-info-module .v-preview .cover{
+width:72px;
+height:72px;
+float:left;
+margin-right:12px;
+margin-top:0;
+border-radius:4px
+}
+.bangumi-info-module .v-preview .title{
+line-height:34px;
+height:34px;
+margin-bottom:6px;
+color:#222;
+font-size:14px
+}
+.bangumi-info-module .v-preview .desc{
+color:#99a2aa;
+font-size:12px;
+vertical-align:top;
+height:16px;
+line-height:12px
+}
+.bangumi-info-module .v-data{
+margin:0 -12px;
+padding:10px 12px 0;
+border-top:1px solid #e5e9ef
+}
+.bangumi-info-module .v-data span{
+white-space:nowrap;
+overflow:hidden;
+text-overflow:ellipsis;
+display:inline-block;
+width:76px;
+margin-right:18px;
+color:#99a2aa;
+line-height:12px
+}
+.bangumi-info-module .v-data span .icon{
+margin-right:4px;
+vertical-align:top;
+display:inline-block;
+width:12px;
+height:12px
+}
+.bangumi-info-module .v-data .play .icon{
+background-position:-282px -90px
+}
+.bangumi-info-module .v-data .danmu .icon{
+background-position:-282px -218px
+}
+.bangumi-info-module .v-data .fav .icon{
+background:url(//s1.hdslb.com/bfs/static/phoenix/home/static/img/bangumi-zf-icon.28d5b48.png) no-repeat
+}
