@@ -1,17 +1,31 @@
 <template>
     <transition name="list-fade">
         <div class="playlist" @click="hide" v-show="showFlag">
-            <div class="list-wrapper">
+            <div class="list-wrapper" @click.stop="stop">
                 <div class="list-header">
                     <h1 class="title">
                         <i class="icon"></i>
-                        <span class="text">{{}}</span>
+                        <span class="text">{{ modeText }}</span>
                         <span class="clear">
                             <i class="icon-clear"></i>
                         </span>
                     </h1>
                 </div>
-    
+                <scroll :data="sequenceList" class="list-content" ref="listContent">
+                    <transition-group name="list" tag="ul">
+                        <li v-for="(item, index) in sequenceList" :key="item.id" @click="selectItem(item,index)"
+                            class="item" ref="listItem">
+                            <i class="current" :class="getCurrentIcon(item)"></i>
+                            <span class="text">{{item.name}}</span>
+                            <span class="like">
+                                <i class="icon-favorite"></i>
+                            </span>
+                            <span @click="deleteOne(item)" class="delete">
+                                <i class="icon-delete"></i>
+                            </span>
+                        </li>
+                    </transition-group>
+                </scroll>
                 <div class="list-operate">
                     <div class="add">
                         <i class="icon-add"></i>
@@ -27,6 +41,9 @@
 </template>
 
 <script>
+import { mapActions, mapGetters, mapMutations } from 'vuex'
+import { playMode } from 'common/js/config'
+import Scroll from '@/base/scroll/scroll'
 
 export default {
     name: 'playlist',
@@ -39,14 +56,83 @@ export default {
     methods: {
         show() {
             this.showFlag = true
+            setTimeout(() => {
+                this.$refs.listContent.refresh()
+                this.scrollToCurrent(this.currentSong)
+            }, 20)
         },
         hide() {
             this.showFlag = false
-        }
+        },
+        stop() {
+
+        },
+        getFavoriteIcon(song) {
+            if (this.isFavorite(song)) {
+                return 'icon-favorite'
+            }
+            return 'icon-not-favorite'
+        },
+        getCurrentIcon(item) {
+            if (this.currentSong.id === item.id) {
+                return 'icon-play'
+            }
+            return ''
+        },
+        selectItem(item, index) {
+            if (this.mode === playMode.random) {
+                index = this.playlist.findIndex((song) => {
+                    return song.id === item.id
+                })
+            }
+            this.setCurrentIndex(index)
+            this.setPlayingState(true)
+        },
+        scrollToCurrent(currSong) {
+            const index = this.sequenceList.findIndex((song) => {
+                return currSong.id === song.id
+            })
+            this.$refs.listContent.scrollToElement(this.$refs.listItem[index], 300)
+        },
+        deleteOne(item) {
+            this.deleteSong(item)
+            if (!this.playlist.length) {
+                this.hide()
+            }
+        },
+        ...mapMutations({
+            setCurrentIndex: 'SET_CURRENT_INDEX',
+            setPlayingState: 'SET_PLAYING_STATE',
+            setPlayMode: 'SET_PLAY_MODE',
+            setPlaylist: 'SET_PLAYLIST',
+        }),
+        ...mapActions([
+            'deleteSong',
+            'deleteSongList'
+        ])
     },
     computed: {
+        modeText() {
+            return this.mode === playMode.sequence ? '顺序播放' : this.mode === playMode.random ? '随机播放' : '单曲循环'
+        },
+        ...mapGetters([
+            'sequenceList',
+            'playlist',
+            'currentSong',
+            'mode',
+            'favoriteList'
+        ])
     },
-    mounted() {
+    watch: {
+        currentSong(newSong, oldSong) {
+            if (!this.showFlag || newSong.id == oldSong.id) {
+                return
+            }
+            this.scrollToCurrent(newSong)
+        }
+    },
+    components: {
+        Scroll
     }
 }
 </script>
