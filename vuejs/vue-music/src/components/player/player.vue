@@ -66,7 +66,7 @@
             </div>
         </transition>
         <transition name="mini">
-            <div class="mini-player" v-show="!fullScreen">
+            <div v-show="!fullScreen" @click="open" class="mini-player">
                 <div class="icon">
                     <img :class="cdCls" width="40" height="40" :src="currentSong.image">
                 </div>
@@ -162,12 +162,14 @@ export default {
         loop() {
             this.$refs.audio.currentTime = 0
             this.$refs.audio.play()
+            this.setPlayingState(true)
             if (this.currentLyric) {
                 this.currentLyric.seek(0)
             }
         },
         ready() {
             this.songReady = true
+            this.savePlayHistory(this.currentSong)
         },
         error() {
             this.songReady = false
@@ -184,9 +186,9 @@ export default {
                 return
             }
             this.setPlayingState(!this.playing)
-            // if (this.currentLyric) {
-            //     this.currentLyric.togglePlay()
-            // }
+            if (this.currentLyric) {
+                this.currentLyric.togglePlay()
+            }
         },
         enter(el, done) {
             const { x, y, scale } = this._getPosAndScale()
@@ -244,19 +246,6 @@ export default {
                 this.currentLyric.seek(currentTime * 1000)
             }
         },
-        changeMode() {
-            const mode = (this.mode + 1) % 3
-            this.setPlayMode(mode)
-
-            let list = null
-            if (this.mode == playMode.random) {
-                list = shuffle(this.sequenceList)
-            } else {
-                list = this.sequenceList
-            }
-            this.resetCurrentIndex(list)
-            this.setPlayList(list)
-        },
         showPlaylist() {
             this.$refs.playlist.show()
         },
@@ -296,7 +285,6 @@ export default {
         },
         middleTouchMove(e) {
             if (!this.touch.initiated) {
-                console.log('!this.touch.initiated')
                 return
             }
             const touch = e.touches[0]
@@ -321,19 +309,24 @@ export default {
                     opacity = 0
                     this.currentShow = 'lyric'
                 } else {
-                    opacity = 1
                     offsetWidth = 0
+                    opacity = 1
                 }
             } else {
                 if (this.touch.percent < 0.9) {
                     offsetWidth = 0
                     this.currentShow = 'cd'
+                    opacity = 1
                 } else {
                     offsetWidth = -window.innerWidth
+                    opacity = 0
                 }
             }
             this.$refs.lyricList.$el.style[transform] = `translate3d(${offsetWidth}px,0,0)`
-            this.$refs.lyricList.$el.style[transitionDuration] = 10000
+            this.$refs.lyricList.$el.style[transitionDuration] = '300ms'
+            this.$refs.middleL.style.opacity = opacity
+            this.$refs.middleL.style[transitionDuration] = '300ms'
+            this.touch.initiated = false
         },
         _getPosAndScale() {
             const targetWidth = 40
@@ -356,8 +349,7 @@ export default {
             setPlayList: 'SET_PLAYLIST'
         }),
         ...mapActions([
-            'saveFavoriteList',
-            'deleteFavoriteList'
+            'savePlayHistory'
         ])
     },
     computed: {
@@ -393,8 +385,12 @@ export default {
             }
             if (this.currentLyric) {
                 this.currentLyric.stop()
+                this.currentTime = 0
+                this.playingLyric = ''
+                this.currentLineNum = 0
             }
-            var timer = setTimeout(() => {
+            clearTimeout(this.timer)
+            this.timer = setTimeout(() => {
                 this.$refs.audio.play()
                 this.getLyric()
             }, 1000)
