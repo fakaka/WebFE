@@ -89,7 +89,6 @@ export const clearSearchHistory = function ({ commit }) {
     commit(types.SET_SEARCH_HISTORY, clearSearch())
 }
 
-// FIXME 删除歌曲有问题
 export const deleteSong = function ({ commit, state }, song) {
     let playlist = state.playlist.slice()
     let sequenceList = state.sequenceList.slice()
@@ -106,10 +105,10 @@ export const deleteSong = function ({ commit, state }, song) {
     commit(types.SET_SEQUENCE_LIST, sequenceList)
     commit(types.SET_CURRENT_INDEX, currentIndex)
 
-    if (playlist.length) {
-        commit(types.SET_PLAYING_STATE, true)
-    } else {
+    if (!playlist.length) {
         commit(types.SET_PLAYING_STATE, false)
+    } else {
+        commit(types.SET_PLAYING_STATE, true)
     }
 }
 

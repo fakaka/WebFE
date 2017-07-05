@@ -4,14 +4,14 @@
             <div class="list-wrapper" @click.stop="stop">
                 <div class="list-header">
                     <h1 class="title">
-                        <i class="icon"></i>
+                        <i class="icon" :class="iconMode" @click="changeMode"></i>
                         <span class="text">{{ modeText }}</span>
                         <span class="clear">
                             <i class="icon-clear"></i>
                         </span>
                     </h1>
                 </div>
-                <scroll :data="sequenceList" class="list-content" ref="listContent">
+                <scroll :data="sequenceList" :refreshDelay="refreshDelay" class="list-content" ref="listContent">
                     <transition-group name="list" tag="ul">
                         <li v-for="(item, index) in sequenceList" :key="item.id" @click="selectItem(item,index)"
                             class="item" ref="listItem">
@@ -20,7 +20,7 @@
                             <span class="like">
                                 <i class="icon-favorite"></i>
                             </span>
-                            <span @click="deleteOne(item)" class="delete">
+                            <span @click.stop="deleteOne(item)" class="delete">
                                 <i class="icon-delete"></i>
                             </span>
                         </li>
@@ -43,14 +43,17 @@
 <script>
 import { mapActions, mapGetters, mapMutations } from 'vuex'
 import { playMode } from 'common/js/config'
+import { playerMixin } from 'common/js/mixin'
 import Scroll from '@/base/scroll/scroll'
 
 export default {
     name: 'playlist',
+    mixins: [playerMixin],
     props: {},
     data() {
         return {
-            showFlag: false
+            showFlag: false,
+            refreshDelay: 120
         }
     },
     methods: {
@@ -66,12 +69,6 @@ export default {
         },
         stop() {
 
-        },
-        getFavoriteIcon(song) {
-            if (this.isFavorite(song)) {
-                return 'icon-favorite'
-            }
-            return 'icon-not-favorite'
         },
         getCurrentIcon(item) {
             if (this.currentSong.id === item.id) {
@@ -100,12 +97,6 @@ export default {
                 this.hide()
             }
         },
-        ...mapMutations({
-            setCurrentIndex: 'SET_CURRENT_INDEX',
-            setPlayingState: 'SET_PLAYING_STATE',
-            setPlayMode: 'SET_PLAY_MODE',
-            setPlaylist: 'SET_PLAYLIST',
-        }),
         ...mapActions([
             'deleteSong',
             'deleteSongList'
@@ -114,17 +105,13 @@ export default {
     computed: {
         modeText() {
             return this.mode === playMode.sequence ? '顺序播放' : this.mode === playMode.random ? '随机播放' : '单曲循环'
-        },
-        ...mapGetters([
-            'sequenceList',
-            'playlist',
-            'currentSong',
-            'mode',
-            'favoriteList'
-        ])
+        }
     },
     watch: {
         currentSong(newSong, oldSong) {
+            // if (!newSong.id) {
+            //     return
+            // }
             if (!this.showFlag || newSong.id == oldSong.id) {
                 return
             }
