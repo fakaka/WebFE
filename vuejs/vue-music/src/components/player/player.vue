@@ -59,7 +59,7 @@
                             <i class="icon-next" @click="next"></i>
                         </div>
                         <div class="icon i-right">
-                            <i class="icon icon-favorite"></i>
+                            <i @click="toggleFavorite(currentSong)" class="icon" :class="getFavoriteIcon(currentSong)"></i>
                         </div>
                     </div>
                 </div>
@@ -92,22 +92,25 @@
 
 <script>
 import { mapGetters, mapMutations, mapActions } from 'vuex'
+
 import animations from 'create-keyframe-animation'
+import Lyric from 'lyric-parser'
 import { prefixStyle } from 'common/js/dom'
-import ProgressBar from '../../base/progress-bar/progress-bar'
-import ProgressCircle from '../../base/progress-circle/Progress-circle'
 import { playMode } from 'common/js/config'
 import { shuffle } from 'common/js/util'
-import Lyric from 'lyric-parser'
+import { playerMixin } from 'common/js/mixin'
+
 import Scroll from '../../base/scroll/scroll'
 import Playlist from '@/components/playlist/playlist'
-
+import ProgressBar from '../../base/progress-bar/progress-bar'
+import ProgressCircle from '../../base/progress-circle/Progress-circle'
 
 const transform = prefixStyle('transform')
 const transitionDuration = prefixStyle('transitionDuration')
 
 export default {
     name: 'player',
+    mixins: [playerMixin],
     props: {},
     data() {
         return {
@@ -311,13 +314,14 @@ export default {
             this.$refs.middleL.style[transitionDuration] = 0
         },
         middleTouchEnd() {
-            let offsetWidth
+            let offsetWidth, opacity
             if (this.currentShow == 'cd') {
                 if (this.touch.percent > 0.1) {
                     offsetWidth = -window.innerWidth
-                    // opacity = 0
+                    opacity = 0
                     this.currentShow = 'lyric'
                 } else {
+                    opacity = 1
                     offsetWidth = 0
                 }
             } else {
@@ -350,7 +354,11 @@ export default {
             setCurrentIndex: 'SET_CURRENT_INDEX',
             setPlayMode: 'SET_PLAY_MODE',
             setPlayList: 'SET_PLAYLIST'
-        })
+        }),
+        ...mapActions([
+            'saveFavoriteList',
+            'deleteFavoriteList'
+        ])
     },
     computed: {
         playIcon() {
@@ -368,23 +376,11 @@ export default {
         percent() {
             return this.currentTime / this.currentSong.duration
         },
-        iconMode() {
-            if (this.mode == playMode.sequence) {
-                return 'icon-sequence'
-            } else if (this.mode == playMode.loop) {
-                return 'icon-loop'
-            } else if (this.mode == playMode.random) {
-                return 'icon-random'
-            }
-        },
         ...mapGetters([
             'fullScreen',
             'playing',
-            'playlist',
-            'currentSong',
             'currentIndex',
-            'mode',
-            'sequenceList'
+            'sequenceList',
         ])
     },
     created() {
