@@ -1,23 +1,22 @@
 <template>
-  <div id="app">
-    <img src="./assets/logo.png">
-    <router-view></router-view>
-  </div>
+    <div id="app">
+        <img src="./assets/logo.png">
+        <toast :message="'可以'"></toast>
+    </div>
 </template>
 
 <script>
+import Toast from './toast/toast'
+
+
 export default {
-  name: 'app'
+    name: 'app',
+    components: {
+        Toast
+    }
 }
 </script>
 
 <style>
-#app {
-  font-family: 'Avenir', Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-  margin-top: 60px;
-}
+
 </style>
