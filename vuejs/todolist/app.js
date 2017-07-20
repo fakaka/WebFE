@@ -1,25 +1,41 @@
-var STORAGE_KEY = 'todos-vuejs-2.0'
+var defaultTodos = ['完成LeetCode或者HackerRank一个题目', '俯卧撑', '视频的一章', '书的一章', '收藏夹的一个', '微博的赞']
+var TODOS_KEY = 'everyday-todos'
+var LASTDAY_KEY = 'lastday'
+var RECORD_KEY = 'records'
+
 var todoStorage = {
     fetch() {
-        var todos = JSON.parse(localStorage.getItem(STORAGE_KEY) || '[]')
-        todos.forEach(function (todo, index) {
+        var todos = JSON.parse(localStorage.getItem(TODOS_KEY) || '[]')
+        todos.forEach((todo, index) => {
             todo.id = index
         })
         todoStorage.uid = todos.length
         return todos
     },
     save(todos) {
-        localStorage.setItem(STORAGE_KEY, JSON.stringify(todos))
+        localStorage.setItem(TODOS_KEY, JSON.stringify(todos))
+    },
+    reset(today) {
+        var lastDay = localStorage.getItem(LASTDAY_KEY)
+        if (lastDay != today) {
+            localStorage.setItem(LASTDAY_KEY, today)
+            var todos = JSON.parse(localStorage.getItem(TODOS_KEY) || '[]')
+            todos.forEach(function (todo, index) {
+                todo.completed = false
+            })
+            this.save(todos)
+            this.record(lastDay)
+        }
+    },
+    record(day) {
+        var records = JSON.parse(localStorage.getItem(RECORD_KEY) || '{}')
+        records[day] = '100%'
+        localStorage.setItem(RECORD_KEY, JSON.stringify(records))
     }
 }
+var today = new Date().toLocaleDateString()
+todoStorage.reset(today)
 
-var filters = {
-    completed: function (todos) {
-        return todos.filter(function (todo) {
-            return todo.completed
-        })
-    }
-}
 
 var app = new Vue({
     data() {
@@ -39,16 +55,6 @@ var app = new Vue({
         }
     },
     computed: {
-        allDone: {
-            get() {
-                return this.remaining === 0
-            },
-            set(value) {
-                this.todos.forEach(function (todo) {
-                    todo.completed = value
-                })
-            }
-        }
     },
     methods: {
         addTodo: function () {
@@ -83,9 +89,6 @@ var app = new Vue({
         cancelEdit: function (todo) {
             this.editedTodo = null
             todo.title = this.beforeEditCache
-        },
-        removeCompleted: function () {
-            this.todos = filters.active(this.todos)
         }
     },
     directives: {

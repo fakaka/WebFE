@@ -21,7 +21,6 @@
             <input class="new-todo" autofocus autocomplete="off" placeholder="What needs to be done?" v-model="newTodo" @keyup.enter="addTodo">
         </header>
         <section class="main" v-show="todos.length" v-cloak>
-            <input class="toggle-all" type="checkbox" v-model="allDone">
             <ul class="todo-list">
                 <li v-for="todo in todos" class="todo" :key="todo.id" :class="{ completed: todo.completed, editing: todo == editedTodo }">
                     <div class="view">
@@ -36,7 +35,7 @@
         </section>
     </section>
     <footer class="info">
-        <p>Written by <a href="">MJ</a></p>
+        <p>By <a href="">MJ</a></p>
     </footer>
     <script src="https://unpkg.com/director/build/director.js"></script>
     <script src="vue.js"></script>
