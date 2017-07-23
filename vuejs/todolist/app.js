@@ -17,19 +17,28 @@ var todoStorage = {
     },
     reset(today) {
         var lastDay = localStorage.getItem(LASTDAY_KEY)
+        localStorage.setItem(LASTDAY_KEY, today)
+        if (!lastDay) {
+            return
+        }
         if (lastDay != today) {
-            localStorage.setItem(LASTDAY_KEY, today)
             var todos = JSON.parse(localStorage.getItem(TODOS_KEY) || '[]')
-            todos.forEach(function (todo, index) {
+            let a = 0, b = 0
+            todos.forEach((todo, index) => {
+                if (todo.completed) {
+                    a++
+                }
+                b++
                 todo.completed = false
             })
             this.save(todos)
-            this.record(lastDay)
+            this.record(lastDay, Math.floor(a * 100 / b))
         }
     },
-    record(day) {
+    record(day, percent) {
         var records = JSON.parse(localStorage.getItem(RECORD_KEY) || '{}')
-        records[day] = '100%'
+        var todos = JSON.parse(localStorage.getItem(TODOS_KEY) || '[]')
+        records[day] = percent + '%'
         localStorage.setItem(RECORD_KEY, JSON.stringify(records))
     }
 }

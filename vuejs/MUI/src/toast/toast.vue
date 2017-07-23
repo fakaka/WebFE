@@ -3,6 +3,7 @@
         {{message}}
     </div>
 </template>
+
 <script>
 export default {
     name: 'mu-toast',
@@ -23,6 +24,7 @@ export default {
     }
 }
 </script>
+
 <style lang="less">
     .mu-toast {
         height: 48px;

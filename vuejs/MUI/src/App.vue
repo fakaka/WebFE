@@ -1,6 +1,5 @@
 <template>
     <div id="app">
-        <img src="./assets/logo.png">
         <toast :message="'可以'"></toast>
     </div>
 </template>
