@@ -30,13 +30,14 @@ export default {
         height: 48px;
         line-height: 48px;
         padding: 0 24px;
-        background-color: #fff;
-        color: #000;
+        background-color: #000;
+        color: #fff;
         border-radius: 24px;
-        max-width: 568px;
         width: 100%;
         position: fixed;
-        left: 0;
         bottom: 0;
+        left: 0;
+        text-overflow: ellipsis;
+        box-sizing: border-box;
     }
 </style>

@@ -1,7 +1,7 @@
 <template>
     <div>
         <ul>
-            <li v-for="" ></li>
+            <span ></span>
         </ul>
     </div>
 </template>
@@ -28,6 +28,6 @@ export default {
 }
 </script>
 
-<style>
+<style >
 
 </style>

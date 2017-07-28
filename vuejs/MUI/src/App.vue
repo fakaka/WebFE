@@ -5,7 +5,7 @@
 </template>
 
 <script>
-import Toast from './toast/toast'
+import Toast from './toast'
 
 
 export default {
