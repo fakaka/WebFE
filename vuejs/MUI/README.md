@@ -37,6 +37,7 @@ For detailed explanation on how things work, checkout the [guide](http://vuejs-t
 * Breadcrumb
 
 
+
 中级组件
 * star
 * list
@@ -53,6 +54,12 @@ For detailed explanation on how things work, checkout the [guide](http://vuejs-t
 * Picker
 * Popup
 * Timeline
+* accordion
+* 侧边栏
+    左侧要有图标右侧有未读的Badge  
+    <http://www.html5tricks.com/demo/jquery-google-nexus/index.html#>  
+    <http://www.html5tricks.com/demo/html5-css3-side-silder-menu/index.html#.WX2mavkdj3R>
+
 
 高级组件
 * player (来自mplayer)
