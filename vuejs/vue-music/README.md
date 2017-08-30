@@ -14,8 +14,10 @@ npm run dev
 # build for production with minification
 npm run build
 
-# build for production and view the bundle analyzer report
-npm run build --report
 ```
+## 更新
+vue的新版本对v-for的key有要求
 
-For detailed explanation on how things work, checkout the [guide](http://vuejs-templates.github.io/webpack/) and [docs for vue-loader](http://vuejs.github.io/vue-loader).
+`[Vue warn]: Avoid using non-primitive value as key, use string/number value instead.`
+
+要把v-for的可以改为 字符串和数字类型
