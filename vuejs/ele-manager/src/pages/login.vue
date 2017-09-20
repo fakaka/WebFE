@@ -7,15 +7,13 @@
 				</div>
 				<el-form :model="loginForm" :rules="rules" ref="loginForm">
 					<el-form-item prop="username">
-						<el-input v-model="loginForm.username" placeholder="用户名">
-							<span>dsfsf</span>
-						</el-input>
+						<el-input v-model="loginForm.username" placeholder="用户名"></el-input>
 					</el-form-item>
 					<el-form-item prop="password">
 						<el-input type="password" placeholder="密码" v-model="loginForm.password"></el-input>
 					</el-form-item>
 					<el-form-item>
-						<el-button type="primary" @click="submitForm('loginForm')" class="submit_btn">登陆</el-button>
+						<el-button type="primary" @click="submitForm('loginForm')" class="submit_btn">登 录</el-button>
 					</el-form-item>
 				</el-form>
 				<p class="tip">温馨提示：</p>
@@ -42,7 +40,7 @@ export default {
 				],
 				password: [
 					{ required: true, message: '请输入密码', trigger: 'blur' }
-				],
+				]
 			},
 			showLogin: true,
 		}
@@ -59,7 +57,7 @@ export default {
 <style lang="less" scoped>
 	@import '../style/mixin';
 	.login_page {
-		background-color: #324057;
+		// background-color: #324057;
 	}
 
 	.manage_tip {
