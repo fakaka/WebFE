@@ -4,7 +4,7 @@
 						<el-radio-button :label="false">展开</el-radio-button>
 						<el-radio-button :label="true">收起</el-radio-button>
 					</el-radio-group> -->
-		<el-menu default-active="user" class="el-menu-vertical-demo" style="min-height: 100%;" @open="handleOpen"
+		<el-menu default-active="song" class="el-menu-vertical-demo" style="min-height: 100%;" @open="handleOpen"
 		    @close="handleClose" :collapse="isCollapse" router>
 			<!-- <el-menu-item index="home">
 				<i class="el-icon-menu"></i>首页

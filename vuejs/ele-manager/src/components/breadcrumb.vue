@@ -1,7 +1,10 @@
 <template>
-    <el-breadcrumb separator="/">
-        <el-breadcrumb-item v-for="(item,index) in items" :key="index" :to="item.to">{{item.content}}</el-breadcrumb-item>
-    </el-breadcrumb>
+    <div>
+        <el-breadcrumb separator="/">
+            <el-breadcrumb-item v-for="(item,index) in items" :key="index" :to="item.to">{{item.content}}</el-breadcrumb-item>
+        </el-breadcrumb>
+        <hr>
+    </div>
 </template>
 
 <script>
@@ -42,6 +45,8 @@ export default {
 }
 </script>
 
-<style>
-
+<style scoped>
+    .el-breadcrumb {
+        margin-bottom: 8px;
+    }
 </style>

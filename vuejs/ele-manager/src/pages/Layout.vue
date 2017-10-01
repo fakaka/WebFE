@@ -6,11 +6,13 @@
                 <el-col :span="4" style="min-height: 100%; background-color: #eff2f7;">
                     <nav-menu></nav-menu>
                 </el-col>
-                <el-col :span="20" style="height: 100%;overflow: auto;">
-                    <breadcrumb style="margin:12px; margin-bottom:16px;"></breadcrumb>
-                    <keep-alive>
-                        <router-view></router-view>
-                    </keep-alive>
+                <el-col :span="20" style="height: 100%;overflow: auto;" class="right">
+                    <breadcrumb style=""></breadcrumb>
+                    <div class="content">
+                        <keep-alive>
+                            <router-view></router-view>
+                        </keep-alive>
+                    </div>
                 </el-col>
             </el-row>
         </div>
@@ -40,6 +42,12 @@ export default {
 }
 </script>
 
-<style>
+<style scoped>
+    .right {
+        padding: 10px;
+    }
 
+    .content {
+        /* padding: 10px; */
+    }
 </style>

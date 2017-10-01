@@ -36,7 +36,7 @@ export default new Router({
             component: Layout,
             children: [{
                 path: '',
-                component: User
+                component: Song
             },
             {
                 path: '/user',
