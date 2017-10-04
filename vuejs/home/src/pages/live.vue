@@ -1,6 +1,11 @@
 <template>
     <div>
         live
+        <div class="douyu"></div>
+        <div class="panda"></div>
+        <div class="quanmin"></div>
+        <div class="zhanqi"></div>
+        <div class="huajiao"></div>
     </div>
 </template>
 

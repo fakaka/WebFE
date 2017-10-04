@@ -1,6 +1,8 @@
 <template>
     <div>
-nav
+        nav
+        <div class="used">常用</div>
+        <div class="delete">可以考虑删除导航</div>
     </div>
 </template>
 

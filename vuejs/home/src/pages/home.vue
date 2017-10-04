@@ -1,6 +1,6 @@
 <template>
     <div>
-        home
+        home > blog(note - code) - game - tool(md editer - ...) - 
     </div>
 </template>
 

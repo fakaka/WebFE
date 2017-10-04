@@ -23,6 +23,8 @@
                 </ul>
             </div>
         </section>
+        <div class="recommond">推荐</div>
+        <div class="like">我的关注</div>
     </div>
 </template>
 
