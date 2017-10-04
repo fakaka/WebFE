@@ -31,9 +31,9 @@
 const BILIBILI_URL_AV = 'https://www.bilibili.com/video/av'
 
 export default {
-    name: 'bilibili-rank',
+    name: 'bilibili',// -rank
     props: {},
-    data () {
+    data() {
         return {
             perfix: BILIBILI_URL_AV,
             rankData: {
@@ -225,23 +225,23 @@ export default {
         }
     },
     methods: {
-        isHighlight (index) {
+        isHighlight(index) {
             return index > 2 ? '' : 'highlight'
         }
     },
     computed: {
     },
-    mounted () {
+    mounted() {
     },
     filters: {
-        playCountFilter (count) {
+        playCountFilter(count) {
             if (count > 10000) {
                 return Math.round(count / 1000) / 10 + 'W'
             } else {
                 return count
             }
         },
-        favoritesCountFilter (count) {
+        favoritesCountFilter(count) {
             if (count > 1000) {
                 return Math.round(count / 100) / 10 + 'K'
             } else {
@@ -259,55 +259,55 @@ export default {
         height: 100%;
         display: inline-block
     }
-    
+
     .lazy-img img {
         display: block;
         width: 100%;
         height: 100%
     }
-    
+
     .zone-module .zone-rank {
         float: left;
         width: 300px;
         min-height: 360px
     }
-    
+
     .sec-rank .rank-head .rank-tab {
         margin-left: 20px;
         float: left
     }
-    
+
     .sec-rank .rank-list-wrap {
         width: 200%;
         overflow: hidden;
         zoom: 1;
         transition: all .2s linear
     }
-    
+
     .sec-rank .rank-list-wrap .rank-list {
         width: 50%;
         float: left
     }
-    
+
     .sec-rank .rank-list-wrap .rank-list .state {
         line-height: 100px
     }
-    
+
     .sec-rank .rank-list-wrap.show-origin {
         margin-left: -100%
     }
-    
+
     .rank-list .rank-item {
         position: relative;
         padding-left: 25px;
         margin-top: 20px;
         overflow: hidden
     }
-    
+
     .rank-list .rank-item.first {
         margin-top: 0
     }
-    
+
     .rank-list .rank-item .ri-num {
         position: absolute;
         color: #fff;
@@ -324,25 +324,25 @@ export default {
         font-weight: bolder;
         font-style: normal
     }
-    
+
     .rank-list .rank-item.highlight .ri-num {
         background: #f25d8e
     }
-    
+
     .rank-list .rank-item .ri-info-wrap {
         position: relative;
         display: block;
         cursor: pointer
     }
-    
+
     .rank-list .rank-item .ri-info-wrap .w-later {
         right: 160px
     }
-    
+
     .rank-list .rank-item .ri-info-wrap:hover .w-later {
         display: block
     }
-    
+
     .rank-list .rank-item .ri-preview {
         margin-right: 5px;
         width: 80px;
@@ -352,22 +352,22 @@ export default {
         border-radius: 4px;
         overflow: hidden
     }
-    
+
     .rank-list .rank-item.show-detail .ri-preview {
         display: block
     }
-    
+
     .rank-list .rank-item .ri-detail {
         float: left
     }
-    
+
     .rank-list .rank-item .ri-detail .ri-title {
         line-height: 18px;
         height: 18px;
         overflow: hidden;
         color: #222
     }
-    
+
     .rank-list .rank-item .ri-detail .ri-point {
         line-height: 12px;
         color: #99a2aa;
@@ -376,7 +376,7 @@ export default {
         display: none;
         overflow: hidden
     }
-    
+
     .rank-list .rank-item.show-detail .ri-detail .ri-title {
         height: 36px;
         line-height: 18px;
@@ -384,15 +384,15 @@ export default {
         width: 160px;
         padding: 0
     }
-    
+
     .rank-list .rank-item.show-detail .ri-point {
         display: block
     }
-    
+
     .rank-list .rank-item:hover .ri-title {
         color: #00a1d6
     }
-    
+
     .sec-rank .more-link {
         display: block;
         height: 24px;
@@ -404,7 +404,7 @@ export default {
         border-radius: 4px;
         transition: .2s;
     }
-    
+
     .sec-rank .rank-head h3 {
         float: left;
         font-size: 18px;

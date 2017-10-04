@@ -1,23 +1,29 @@
 <template>
-  <div id="app">
-    <img src="./assets/logo.png">
-    <router-view></router-view>
-  </div>
+    <div id="app">
+        <el-menu :default-active="activeIndex" class="el-menu" mode="horizontal" @select="handleSelect" router>
+            <el-menu-item index="home"> 主页</el-menu-item>
+            <el-menu-item index="nav">页面导航</el-menu-item>
+            <el-menu-item index="bilibili">哔哩哔哩</el-menu-item>
+            <el-menu-item index="music">音乐</el-menu-item>
+            <el-menu-item index="news">新闻</el-menu-item>
+            <el-menu-item index="live">直播</el-menu-item>
+            <el-menu-item index="todo">TODO</el-menu-item>
+        </el-menu>
+        <router-view></router-view>
+    </div>
 </template>
 
 <script>
 export default {
-  name: 'app'
+    name: 'app',
+    data() {
+        return {
+            activeIndex: 'home'
+        }
+    }
 }
 </script>
 
-<style>
-#app {
-  font-family: 'Avenir', Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-  margin-top: 60px;
-}
+<style lang="less">
+    @import './style/common';
 </style>
