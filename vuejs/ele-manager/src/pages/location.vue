@@ -21,8 +21,8 @@ export default {
                     }, {
                         label: '秦淮区'
                     }]
-            }]
-        }, {
+                }]
+            }, {
                 label: '一级 2',
                 children: [{
                     label: '二级 2-1',
@@ -49,19 +49,19 @@ export default {
                     }]
                 }]
             }],
-        defaultProps: {
-            children: 'children',
+            defaultProps: {
+                children: 'children',
                 label: 'label'
+            }
         }
-    }
-},
-methods: {
-},
-created() { },
-computed: { },
-components: {
+    },
+    methods: {
+    },
+    created() { },
+    computed: {},
+    components: {
 
-}
+    }
 }
 </script>
 

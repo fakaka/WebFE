@@ -1,12 +1,12 @@
 import Vue from 'vue'
 import Router from 'vue-router'
 
-import Layout from '@/pages/Layout'
 import Login from '@/pages/login'
-// import About from '@/pages/login'
+import Layout from '@/pages/Layout/layout'
 
 
 // 管理模块
+import Dashboard from '@/pages/dashboard'
 import User from '@/pages/user'
 import Song from '@/pages/song'
 import Blog from '@/pages/blog'
@@ -32,11 +32,14 @@ export default new Router({
         },
         {
             path: '/home',
-            name: 'Home',
             component: Layout,
             children: [{
                 path: '',
-                component: Song
+                component: Dashboard
+            },
+            {
+                path: '/dashboard',
+                component: Dashboard
             },
             {
                 path: '/user',

@@ -2,30 +2,25 @@
 
 > A Vue.js project
 
-## Build Setup
+## TODO
 
-``` bash
-# install dependencies
-npm install
-
-# serve with hot reload at localhost:8080
-npm run dev
-
-# build for production with minification
-npm run build
-
-```
-
-
-## 
-
-界面设计
-``` html
-
-Layout
-
-
-```
+- [ ] 登录
+- [ ] 动态侧边栏（支持多级路由）
+- [ ] 面包屑
+- [ ] 富文本编辑器
+- [ ] Markdown编辑器
+- [ ] 图表
+    - [ ] echart图表
+    - [ ] d3图表
+- [ ] 导出
+    - [ ] excel
+    - [ ] zip
+    - [ ] 图表下载
+- [ ] dashboard
+- [ ] screenfull
+- [ ] markdown2html
+- [ ] clipboard
+- [ ] 上传头像
 
 
 
