@@ -47,7 +47,7 @@ export default {
 	},
 	methods: {
 		submitForm() {
-			this.$router.push('/home')
+			this.$router.push('/admin')
 		}
 	}
 

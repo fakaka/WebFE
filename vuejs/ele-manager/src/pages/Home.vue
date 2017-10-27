@@ -1,13 +1,13 @@
 <template>
     <div>
-        dashboard
+        home
     </div>
 </template>
 
 <script>
 
 export default {
-    name: 'dashboard',
+    name: 'home',
     props: {},
     data() {
         return {

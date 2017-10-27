@@ -6,7 +6,7 @@ import Layout from '@/pages/Layout/layout'
 
 
 // 管理模块
-import Dashboard from '@/pages/dashboard'
+import Home from '@/pages/Home'
 import User from '@/pages/user'
 import Song from '@/pages/song'
 import Blog from '@/pages/blog'
@@ -31,15 +31,15 @@ export default new Router({
             component: Login
         },
         {
-            path: '/home',
+            path: '/admin',
             component: Layout,
             children: [{
                 path: '',
-                component: Dashboard
+                component: Home
             },
             {
-                path: '/dashboard',
-                component: Dashboard
+                path: '/home',
+                component: Home
             },
             {
                 path: '/user',

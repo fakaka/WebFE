@@ -1,7 +1,7 @@
 {
-  "name": "ele-manager",
-  "version": "1.0.0",
-  "description": "A Vue.js project",
+  "name": "hairpin-manager",
+  "version": "0.0.1",
+  "description": "hairpin admin",
   "author": "hairpin <vsmj012@163.com>",
   "private": true,
   "scripts": {

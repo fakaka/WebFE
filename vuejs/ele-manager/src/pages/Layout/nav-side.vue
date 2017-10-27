@@ -2,12 +2,15 @@
     <div>
         <el-menu default-active="dashboard" class="el-menu-vertical-demo" style="min-height: 100%;" @open="handleOpen" @close="handleClose" :collapse="isCollapse" router>
             <hamburger :toggleClick="toggleSideBar" :isCollapse="isCollapse"></hamburger>
-            <el-submenu index="1">
+            <el-menu-item index="home">
+                <i class="el-icon-menu"></i>
+                <span slot="title">主页</span>
+            </el-menu-item>
+            <el-submenu index="2">
                 <template slot="title">
                     <i class="el-icon-message"></i>
                     <span slot="title">信息管理</span>
                 </template>
-                <el-menu-item index="dashboard">主页</el-menu-item>
                 <el-menu-item index="user">用户管理</el-menu-item>
                 <el-menu-item index="song">歌曲管理</el-menu-item>
                 <el-menu-item index="blog">博客管理</el-menu-item>
@@ -15,7 +18,7 @@
                 <el-menu-item index="todo">清单管理</el-menu-item>
                 <el-menu-item index="download">下载管理</el-menu-item>
             </el-submenu>
-            <el-submenu index="2">
+            <el-submenu index="3">
                 <template slot="title">
                     <i class="el-icon-edit"></i>
                     <span slot="title">开发</span>
@@ -24,7 +27,7 @@
                 <el-menu-item index="interface">接口管理</el-menu-item>
                 <el-menu-item index="image">图床</el-menu-item>
             </el-submenu>
-            <el-submenu index="3">
+            <el-submenu index="4">
                 <template slot="title">
                     <i class="el-icon-setting"></i>
                     <span slot="title">设置</span>
