@@ -1,12 +1,4 @@
 @import url('https://fonts.googleapis.com/css?family=Concert+One|Pacifico');
-.mobile {
-    position: fixed;
-    text-align: center;
-    width: 100%;
-    top: 50px;
-    font-size: 90px;
-    display: block;
-}
 
 h1,
 h2,
@@ -14,7 +6,7 @@ span {
     display: none;
 }
 
-@media screen and (min-width: 670px) {
+/* @media screen and (min-width: 670px) { */
     .mobile {
         display: none;
     }
@@ -137,7 +129,7 @@ span {
         width: 300px;
         bottom: -95px;
         left: 50%;
-        top: 600px;
+        top: 590px;
         margin-left: -150px;
         border-radius: 100%;
         background: radial-gradient(ellipse closest-side at center, #08c7fe 0%, #04d7f2 71%, #02ffd0 100%);
@@ -176,7 +168,7 @@ span {
         /*   http://www.css3.info/preview/box-shadow/ */
         box-shadow: 0 0 17px 7px rgba(251, 246, 190, 0.71);
         transform-origin: bottom;
-        animation: flicker 1s ease-in-out alternate infinite;
+        animation: flicker 2s ease-in-out alternate infinite;
     }
 
     @keyframes flicker {
@@ -189,7 +181,7 @@ span {
             box-shadow: 0 0 17px 5px rgba(251, 246, 190, 0.71);
         }
         50% {
-            transform: skewX(10deg);
+            transform: skewX(15deg);
             box-shadow: 0 0 17px 7px rgba(251, 246, 190, 0.71);
         }
         75% {
@@ -527,4 +519,4 @@ span {
             margin-left: 80%;
         }
     }
-}
+/* } */
