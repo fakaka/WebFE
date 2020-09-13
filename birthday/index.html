@@ -2,7 +2,7 @@
 <html lang="en">
     <head>
         <meta charset="UTF-8" />
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
         <title>生日快乐 🎂 10.06</title>
 
         <style>
@@ -21,8 +21,8 @@
         <bokeh></bokeh>
 
         <div class="music">
-            <img src="./images/music.png" alt="">
-            <audio src="https://music.163.com/song?id=159568" autoplay></audio>
+            <img id="musiclog" src="./images/music.png" alt="play" />
+            <audio id="audio" src="https://music.163.com/song/media/outer/url?id=159568.mp3" autoplay="autoplay"></audio>
         </div>
         <div class="pyro">
             <div class="before"></div>
@@ -41,5 +41,12 @@
         <div class="plate"></div>
 
         <div style="text-align: center; margin: -100px 0; font: normal 14px/24px 'MicroSoft YaHei'"></div>
+
+        <script>
+            let audio = document.querySelector('#audio')
+            document.querySelector('#musiclog').addEventListener('click', () => {
+                audio.pause()
+            })
+        </script>
     </body>
 </html>
